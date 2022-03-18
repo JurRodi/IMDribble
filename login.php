@@ -16,6 +16,11 @@
     <title>IMDribble</title>
 </head>
 <body>
-    
+    <form method="POST" action="">
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="email" >
+        <label for="password">Password</label>
+        <input type="text" name="password" placeholder="password">
+    </form>
 </body>
 </html>
