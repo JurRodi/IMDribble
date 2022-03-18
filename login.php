@@ -1,11 +1,7 @@
 <?php 
 
     include_once(__DIR__. "/bootstrap.php");
-
-    $conn = Db::getConnection();
-    $stmt = $conn->query("select * from users");
-    $users = $stmt->fetchAll();
-    var_dump($users);
+    var_dump(User::getAll());
 
 ?><!DOCTYPE html>
 <html lang="en">
