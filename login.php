@@ -4,8 +4,8 @@
 
     $conn = Db::getConnection();
     $stmt = $conn->query("select * from users");
-    $data = $stmt->fetchAll();
-    var_dump($data);
+    $users = $stmt->fetchAll();
+    var_dump($users);
 
 ?><!DOCTYPE html>
 <html lang="en">
