@@ -106,4 +106,11 @@
 
                 return $this;
         }
+
+        public static function getAll(){
+            $conn = Db::getConnection();
+            $stmt = $conn->query("select * from users");
+            $users = $stmt->fetchAll();
+            return $users;
+        }
     }
