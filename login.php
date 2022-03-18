@@ -1,12 +1,4 @@
 <?php 
-
-    include_once(__DIR__. "/bootstrap.php");
-
-    $conn = Db::getConnection();
-    $stmt = $conn->query("select * from users");
-    $data = $stmt->fetchAll();
-    var_dump($data);
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +8,11 @@
     <title>IMDribble</title>
 </head>
 <body>
-    
+    <form method="POST" action="">
+    <label for="email">Email</label>
+    <input type="text" name="email" placeholder="email" >
+    <label for="password">Password</label>
+    <input type="text" name="password" placeholder="password">
+    </form>
 </body>
 </html>
