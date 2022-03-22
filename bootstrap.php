@@ -4,6 +4,8 @@
         include_once(__DIR__."/classes/" . $class . ".php");
     });
 
+    include_once(__DIR__."/functions.php");
+
     // try{
     //     $config = parse_ini_file(__DIR__. "/config/config.ini");
     // }

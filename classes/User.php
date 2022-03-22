@@ -67,6 +67,7 @@
         public function save(){
             $options = [ 'cost' => 12];
 			$password = password_hash($this->password, PASSWORD_DEFAULT, $options);
+
             include_once(__DIR__."/./Db.php");
             $conn = Db::getConnection();
 
@@ -77,5 +78,29 @@
             
             return $statement->execute();
         }
-        
+
+        public function canLogin($email, $password) {
+            include_once(__DIR__."/./Db.php");
+            $conn = Db::getConnection();
+
+            $statement = $conn->prepare("select * from users where email = :email");
+            $statement->bindValue(":email", $email);
+            $statement->execute();
+
+            $user = $statement->fetch();
+
+            if(!$user) {
+                throw new Exception("User does not exist");
+                return false;
+            }
+            
+            if(password_verify($password, $user['password'])) {
+                return true;
+            } else {
+                throw new Exception("Passwords incorrect");
+                return false;
+            }
+			
+			
+		}
     }
