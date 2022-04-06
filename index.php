@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php 
+
+    include_once(__DIR__. "/bootstrap.php");
+    Security::onlyLoggedInUsers();
+
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +13,7 @@
     <title>IMDribble</title>
 </head>
 <body>
+    <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <p>nog geen uploads</p>
 </body>
 </html>
