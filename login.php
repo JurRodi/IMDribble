@@ -1,14 +1,15 @@
 <?php 
-    include_once(__DIR__."/classes/User.php"); 
-    session_start();
+    include_once(__DIR__. "/bootstrap.php");
 
     if (!empty($_POST)) {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $user = new User();
         try {
-            $user->canLogin($email, $password);
+            $user = new User();
+            $user->setEmail($_POST["email"]);
+            $user->setPassword($_POST["password"]);
+            $user->canLogin();
+            
             session_start();
+            $_SESSION['email'] = $user->getEmail();
             header("Location: index.php");
         }
         catch ( Throwable $e ) {
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="backgroundlogin">
 
 
@@ -42,6 +44,15 @@
         <input class="button1"  type="submit" value="Log in">
         </form>
     </div>
+=======
+    <form method="POST" action="">
+    <label for="email">Email</label>
+    <input type="text" name="email" placeholder="email" >
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Log in">
+    </form>
+>>>>>>> 420d118c9a70104c0d3d4df61a70b792b8f75a33
     <?php if(isset($error)): ?>
         <div><?php echo $error ?></div>
     <?php endif; ?>

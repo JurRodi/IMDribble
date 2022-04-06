@@ -14,10 +14,13 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <a href="settings.php">settings</a>
     <div class="avatar">
         <img src="<?php echo $user['avatar']; ?>" alt="avatar">
     </div>
-    <h3><?php echo $user['username']; ?></h3>
+    <a href="#">Edit<?php //User::setAvatar($avatar) ?></a>
+    <h4>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" ></h4>
+    <h4>Bio: <input type="text" name="username" value="<?php echo $user['bio']; ?>"></h4>
+    <h4>Email: <input type="text" name="username" value="<?php echo $user['email']; ?>"></h4>
+    <h4>Password: <a href="#">Change password</a> </h4>
 </body>
 </html>
