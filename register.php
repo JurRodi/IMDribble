@@ -1,6 +1,6 @@
 <?php
-    include_once(__DIR__."/classes/User.php");
-	session_start();
+    include_once(__DIR__. "/bootstrap.php");
+
     if(!empty($_POST)){
         try {
             $user = new User();
@@ -10,6 +10,9 @@
             $user->setPassword($_POST['password']);
             $user->setPassword_conf($_POST['password_conf']);
             $user->save();
+
+            session_start();
+            $_SESSION['email'] = $user->getEmail();
             header("Location: index.php");
         }
         catch ( Throwable $e ) {
@@ -34,9 +37,9 @@
         <label for="email">Email</label>
         <input type="text" name="email" placeholder="email" >
         <label for="password">Password</label>
-        <input type="text" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password">
         <label for="password_conf">Repeat password</label>
-        <input type="text" name="password_conf" placeholder="password">
+        <input type="password" name="password_conf" placeholder="password">
         <input type="submit" value="Register">
     </form>
     <?php if(isset($error)): ?>
