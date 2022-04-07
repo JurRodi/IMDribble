@@ -7,7 +7,6 @@
 
     $statement = $conn->prepare("SELECT * FROM avatars WHERE user_id = :user_id");
     $statement->bindValue(':user_id', $user['id']);
-    //$statement = $conn->prepare("SELECT * FROM avatars");
     $statement->execute();
     $avatar = $statement->fetch();
 
@@ -32,7 +31,6 @@
         <input type="file" name="avatar">
         <input type="submit" name="submit" value="Upload">
     </form>
-    <!-- <a href="#">Edit<?php //User::setAvatar($avatar) ?></a> -->
     <form action="" method="POST">
         <h4>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" ></h4>
         <h4>Bio: <input type="text" name="username" value="<?php echo $user['bio']; ?>"></h4>
