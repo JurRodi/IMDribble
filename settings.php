@@ -4,11 +4,7 @@
     Security::onlyLoggedInUsers();
     $user = User::getUserByEmail($_SESSION['email']);
     include_once(__DIR__. "/upload.php");
-
-    $statement = $conn->prepare("SELECT * FROM avatars WHERE user_id = :user_id");
-    $statement->bindValue(':user_id', $user['id']);
-    $statement->execute();
-    $avatar = $statement->fetch();
+    $user = User::getUserByEmail($_SESSION['email']);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -21,7 +17,7 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <div class="avatar">
-        <img src="<?php echo 'avatars/'.$avatar['fileName']; ?>" alt="avatar">
+        <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <br>
     <?php if(!empty($statusMsg)): ?>

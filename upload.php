@@ -14,9 +14,9 @@
 
             if(in_array($fileType, $allowTypes)){
                 if(move_uploaded_file($_FILES["avatar"]["tmp_name"], $targetFilePath)){
-                    $insert = $conn->prepare("INSERT INTO avatars (fileName, user_id) VALUES (:fileName, :user_id)");
-                    $insert->bindValue(':fileName', $fileName);
-                    $insert->bindValue(':user_id', $user['id']);
+                    $insert = $conn->prepare("UPDATE users SET avatar = :avatar WHERE id = :id");
+                    $insert->bindValue(':avatar', $fileName);
+                    $insert->bindValue(':id', $user['id']);
                     $insert->execute();
                     if($insert){
                         $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
