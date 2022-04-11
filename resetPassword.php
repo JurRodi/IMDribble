@@ -9,12 +9,20 @@
     $code = $_GET['code'];
 
     $conn = DB::getConnection();
-    $getEmail = $conn->prepare("SELECT email FROM resetPassword WHERE code = :code");
-    $getEmail->bindValue(":code", $code);
-    $getEmail->execute();
+    $statement = $conn->prepare("SELECT * FROM resetPassword WHERE code = :code");
+    $statement->bindValue(":code", $code);
+    $statement->execute();
+    $reset_info = $statement->fetch();
 
-    if($getEmail->rowCount() == 0){
+    if($statement->rowCount() == 0){
         exit("Can't find page");
+    }
+
+    if(strtotime($reset_info['request_time']) + 86400 < strtotime(date("Y-m-d H:i:s"))){
+        $delete = $conn->prepare("DELETE FROM resetPassword WHERE code = :code");
+        $delete->bindValue(":code", $code);
+        $delete->execute();
+        exit("Your link has expired");
     }
 
     if(isset($_POST['password'])){
@@ -28,7 +36,7 @@
             throw new Exception("Your password has to be at least 6 characters long");
         }
 
-        $email = $getEmail->fetch()['email'];
+        $email = $statement->fetch()['email'];
         $stmt = $conn->prepare("UPDATE users SET password = :password WHERE email = :email");
         $stmt->bindValue(":password", $hashed_password);
         $stmt->bindValue(":email", $email);
