@@ -31,10 +31,9 @@
     <link rel="stylesheet" type="" href="styling/style.css">
 </head>
 <body>
-<<<<<<< HEAD
     <div class="registerform">
         <h1>Register</h1>
-        <h2>Create a account!</h2>
+        <h2>Create an account!</h2>
         <form method="POST" action="">
           <div class="userdetails"> 
               <div class="input-box">
@@ -47,39 +46,19 @@
             </div>
             <div class="input-box">
                 <label for="password">Password</label>
-                <input type="text" name="password" placeholder="password">
+                <input type="password" name="password" placeholder="password">
             </div>
             <div class="input-box">
                 <label for="password_conf">Repeat password</label>
-                <input type="text" name="password_conf" placeholder="password">
+                <input type="password" name="password_conf" placeholder="password">
             </div>
             <input class="button1" type="submit" value="Register">
           </div> 
         </form>
     </div>    
-=======
-    <form method="POST" action="">
-        <label for="username">Username</label>
-        <input type="text" name="username" placeholder="username" >
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="email" >
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="password">
-        <label for="password_conf">Repeat password</label>
-        <input type="password" name="password_conf" placeholder="password">
-        <input type="submit" value="Register">
-    </form>
->>>>>>> 420d118c9a70104c0d3d4df61a70b792b8f75a33
     <?php if(isset($error)): ?>
         <div><?php echo $error ?></div>
     <?php endif; ?>
     
-</body>
-
-<body>
-	
-	
-
-	
 </body>
 </html>
