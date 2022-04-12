@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDribble</title>
+    <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
@@ -20,5 +21,6 @@
         <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <h3><?php echo $user['username']; ?></h3>
+    <p><?php echo $user['bio']; ?></p>
 </body>
 </html>
