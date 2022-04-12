@@ -3,9 +3,11 @@
     class User{
         protected $username;
         protected $email;
+        protected $email2;
         protected $password;
         protected $password_conf;
         protected static $avatar;
+        protected $bio;
 
         public function getUsername(){
             return $this->username;
@@ -28,6 +30,23 @@
             
             $this->email = $email;
             return $this;
+        }
+
+        public function getEmail2()
+        {
+                return $this->email2;
+        }
+
+        /**
+         * Set the value of email2
+         *
+         * @return  self
+         */ 
+        public function setEmail2($email2)
+        {
+                $this->email2 = $email2;
+
+                return $this;
         }
 
         public function getPassword(){
@@ -119,6 +138,23 @@
                 return self::$avatar;
         }
 
+        public function getBio()
+        {
+                return $this->bio;
+        }
+
+        /**
+         * Set the value of bio
+         *
+         * @return  self
+         */ 
+        public function setBio($bio)
+        {
+                $this->bio = $bio;
+
+                return $this;
+        }
+        
         public static function getUserByEmail($email) {
                 $conn = Db::getConnection();
                 $statement = $conn->prepare("select * from users where email = :email;");
@@ -126,4 +162,5 @@
                 $statement->execute();
                 return $statement->fetch();
             }
+        
     }
