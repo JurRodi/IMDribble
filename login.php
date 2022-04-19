@@ -27,21 +27,32 @@
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
-    <div class="backgroundlogin">
+    
+    <div class="split-screen">
+        <div class="left">
+            <img id="quote" src="images/quote.png" alt="quote">
+        </div>
 
-
+        <div class="right">
+            <form method="POST" action="">
+            <section class="copy">
+                <h1>Login</h1>
+                <h2>Welcome back!</h2>
+            </section>
+            <div class="userdetails"> 
+              <div class="input-box">
+                <label for="email">Email</label>
+                <input type="text" name="email" placeholder="email" >
+            </div>
+            <div class="userdetails"> 
+              <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="password">
+              </div>
+            <input class="signup-btn"  type="submit" value="Log in">
+            </div>
+            </form>
     </div>
-
-    <div class="loginform">
-        <h1>Login</h1>
-        <h2>Welcome back!</h2>
-        <form method="POST" action="">
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="email" >
-        <label for="password">Password</label>
-        <input type="text" name="password" placeholder="password">
-        <input class="button1"  type="submit" value="Log in">
-        </form>
     </div>
     <?php if(isset($error)): ?>
         <div><?php echo $error ?></div>
