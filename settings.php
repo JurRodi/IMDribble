@@ -1,13 +1,28 @@
 <?php 
-
     include_once(__DIR__. "/bootstrap.php");
     Security::onlyLoggedInUsers();
     $user = User::getUserByEmail($_SESSION['email']);
     include_once(__DIR__. "/avatar.php");
-    $user = User::getUserByEmail($_SESSION['email']);
+    
 
     if(isset($_POST['save'])){
-        echo "save";
+        echo $_SESSION['email'];
+        try{
+            $updatedUser = new User();
+            $updatedUser->getUserByEmail($_SESSION['email']);
+            $updatedUser->setEmail($user["email"]);
+            $updatedUser->setEmail2($_POST["email2"]);
+            $updatedUser->setBio($_POST["bio"]);
+            $updatedUser->setEducation($_POST["education"]);
+            $updatedUser->setInstagram($_POST["instagram"]);
+            $updatedUser->setLinkedin($_POST["linkedin"]);
+
+            $updatedUser->updateProfile();
+            header("Location: profile.php");
+        }
+        catch(Throwable $e){
+            $error = $e->getMessage();
+        }
     }
 
 ?><!DOCTYPE html>

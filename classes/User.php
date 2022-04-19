@@ -8,6 +8,9 @@
         protected $password_conf;
         protected static $avatar;
         protected $bio;
+        protected $education;
+        protected $instagram;
+        protected $linkedin;
 
         public function getUsername(){
             return $this->username;
@@ -163,4 +166,76 @@
                 return $statement->fetch();
             }
         
+
+        /**
+         * Get the value of education
+         */ 
+        public function getEducation()
+        {
+                return $this->education;
+        }
+
+        /**
+         * Set the value of education
+         *
+         * @return  self
+         */ 
+        public function setEducation($education)
+        {
+                $this->education = $education;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of instagram
+         */ 
+        public function getInstagram()
+        {
+                return $this->instagram;
+        }
+
+        /**
+         * Set the value of instagram
+         *
+         * @return  self
+         */ 
+        public function setInstagram($instagram)
+        {
+                $this->instagram = $instagram;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of linkedin
+         */ 
+        public function getLinkedin()
+        {
+                return $this->linkedin;
+        }
+
+        /**
+         * Set the value of linkedin
+         *
+         * @return  self
+         */ 
+        public function setLinkedin($linkedin)
+        {
+                $this->linkedin = $linkedin;
+
+                return $this;
+        }
+
+        public function updateProfile(){
+            $conn = Db::getConnection();
+            $statement=$conn->prepare("update users set bio = :bio, education = :education, email2 = :email2, instagram = :instagram, linkedin = :linkedin where email = :email");
+            $statement->bindValue(":bio", $this->bio);
+            $statement->bindValue(":email", $this->email);
+            $statement->bindValue(":email2", $this->email2);
+            $statement->bindValue(":education", $this->education);
+            $statement->bindValue(":instagram", $this->instagram);
+            $statement->bindValue(":linkedin", $this->linkedin);
+            return $statement->execute();
+        }
     }
