@@ -21,6 +21,7 @@
     <h4>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" ></h4>
     <h4>Bio: <input type="text" name="username" value="<?php echo $user['bio']; ?>"></h4>
     <h4>Email: <input type="text" name="username" value="<?php echo $user['email']; ?>"></h4>
-    <h4>Password: <a href="#">Change password</a> </h4>
+    <h4>Password: <a href="changepassword.php">Change password</a> </h4>
+   <a href="deleteProfile.php">delete profile</a>
 </body>
 </html>
