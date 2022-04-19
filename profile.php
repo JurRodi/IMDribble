@@ -21,6 +21,17 @@
         <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <h3><?php echo $user['username']; ?></h3>
+    <?php if (!empty($user['education'])): ?>
+    <p>Student: <?php echo $user['education']; ?></p>
+    <?php endif; ?>
+    <?php if (!empty($user['bio'])): ?>
     <p><?php echo $user['bio']; ?></p>
+    <?php endif; ?>
+    <?php if (!empty($user['instagram'])): ?>
+    <a href="<?php echo $user['instagram']; ?>">Instagram</a>
+    <?php endif; ?>
+    <?php if (!empty($user['linkedin'])): ?>
+    <a href="<?php echo $user['linkedin']; ?>">Linkedin</a>
+    <?php endif; ?>
 </body>
 </html>

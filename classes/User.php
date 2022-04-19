@@ -57,7 +57,7 @@
         }
         public function setPassword($password){
             if(strlen($password)<=6){
-                throw new Exception("Your password has to be at least 6 characters long");
+                throw new Exception("Your password has to be at least 7 characters long");
             }
             $this->password = $password;
             return $this;
@@ -103,7 +103,8 @@
 
         public function canLogin() {
             $conn = Db::getConnection();
-            $statement = $conn->prepare("select * from users where email = :email");
+            $statement = $conn->prepare("select * from users where email = :email OR email2 = :email");
+            
             $statement->bindValue(":email", $this->email);
             $statement->execute();
 
@@ -160,7 +161,7 @@
         
         public static function getUserByEmail($email) {
                 $conn = Db::getConnection();
-                $statement = $conn->prepare("select * from users where email = :email;");
+                $statement = $conn->prepare("select * from users where email = :email or email2 = :email;");
                 $statement->bindValue(':email', $email);
                 $statement->execute();
                 return $statement->fetch();
