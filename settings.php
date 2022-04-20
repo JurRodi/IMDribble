@@ -3,7 +3,7 @@
     include_once(__DIR__. "/bootstrap.php");
     Security::onlyLoggedInUsers();
     $user = User::getUserByEmail($_SESSION['email']);
-    include_once(__DIR__. "/avatar.php");
+    include_once(__DIR__. "/upload.php");
     $user = User::getUserByEmail($_SESSION['email']);
 
     if(isset($_POST['save'])){
@@ -22,14 +22,14 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <div class="avatar">
-        <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
+        <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <br>
     <?php if(!empty($statusMsg)): ?>
         <div class="alert"><?php echo $statusMsg; ?></div>
     <?php endif; ?>
     <form action="" method="POST" enctype="multipart/form-data">
-        <input type="file" name="avatar">
+        <input type="file" name="image">
         <input type="submit" name="submit" value="Upload">
     </form>
     <form action="" method="POST">

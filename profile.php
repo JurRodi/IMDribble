@@ -18,7 +18,7 @@
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <a href="settings.php">settings</a>
     <div class="avatar">
-        <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
+        <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <h3><?php echo $user['username']; ?></h3>
     <p><?php echo $user['bio']; ?></p>

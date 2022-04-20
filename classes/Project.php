@@ -69,12 +69,20 @@
                 return $this;
         }
 
-        public static function getAll() {
+        public static function getAmountPerPage($limit, $offset) {
                 $conn = Db::getConnection();
-                $statement = $conn->prepare("select * from projects");
+                $statement = $conn->prepare("select * from projects order by timestamp desc limit $limit offset $offset");
                 $statement->execute();
                 $projects = $statement->fetchAll();
                 return $projects;
+        }
+
+        public static function countAll() {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select count(id) as total from projects");
+                $statement->execute();
+                $count = $statement->fetchAll();
+                return $count;
         }
 
         public static function getAllImagesOfProject($project_id){
@@ -84,6 +92,34 @@
                 $statement->execute();
                 $images = $statement->fetchAll();
                 return $images;
+        }
+
+        public static function addProject($user_id){
+                $conn = Db::getConnection();
+                $project = $conn->prepare("INSERT INTO projects (title, teaser, description, user_id) VALUES (:title, :teaser, :description, :user_id)");
+                $project->bindValue(':title', $_POST['title']);
+                $project->bindValue(':teaser', $_POST['teaser']);
+                $project->bindValue(':description', $_POST['description']);
+                $project->bindValue(':user_id', $user_id);
+                $project->execute();
+                $project_id = $conn->lastInsertId();
+                return $project_id;
+        }
+
+        public static function getUser($user_id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from users where id = :user_id");
+                $statement->bindValue("user_id", $user_id);
+                $statement->execute();
+                return $statement->fetch();
+        }
+
+        public static function getProjectbyTitle($title){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects where title = :title");
+                $statement->bindValue("title", $title);
+                $statement->execute();
+                return $statement->fetch();
         }
     }
 ?>
