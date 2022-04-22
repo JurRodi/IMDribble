@@ -3,10 +3,9 @@
     include_once(__DIR__. "/bootstrap.php");
     Security::onlyLoggedInUsers();
     $conn = Db::getConnection();
-    $user = User::getUserByEmail($_SESSION['email']);
+    $user = User::getUserById($_GET['u']);
 
-
-    $projects = Project::getProjectsByUserId($user['id']);
+    $projects = Project::getProjectsByUserId($_GET['u']);
     $project_id = 1;
     $images = Project::getAllImagesOfProject($project_id);
 
@@ -21,9 +20,9 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <a href="settings.php">settings</a>
+    <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Back</a>
     <div class="avatar">
-        <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+        <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
     </div>
     <h3><?php echo $user['username']; ?></h3>
     <?php if (!empty($user['education'])): ?>

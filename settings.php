@@ -1,5 +1,4 @@
 <?php 
-
     include_once(__DIR__. "/bootstrap.php");
     Security::onlyLoggedInUsers();
     $user = User::getUserByEmail($_SESSION['email']);
@@ -7,7 +6,22 @@
     $user = User::getUserByEmail($_SESSION['email']);
 
     if(isset($_POST['save'])){
-        echo "save";
+        echo $_SESSION['email'];
+        try{
+            $updatedUser = new User();
+            $updatedUser->getUserByEmail($_SESSION['email']);
+            $updatedUser->setEmail($user["email"]);
+            $updatedUser->setEmail2($_POST["email2"]);
+            $updatedUser->setBio($_POST["bio"]);
+            $updatedUser->setEducation($_POST["education"]);
+            $updatedUser->setInstagram($_POST["instagram"]);
+            $updatedUser->setLinkedin($_POST["linkedin"]);
+            $updatedUser->updateProfile();
+            header("Location: profile.php");
+        }
+        catch(Throwable $e){
+            $error = $e->getMessage();
+        }
     }
 
 ?><!DOCTYPE html>
@@ -34,9 +48,12 @@
     </form>
     <form action="" method="POST">
         <h4>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" ></h4>
-        <h4>Bio: <input type="text" name="bio" value="<?php echo $user['bio']; ?>"></h4>
         <h4>Email: <input type="text" name="email" value="<?php echo $user['email']; ?>"></h4>
         <h4>Second email: <input type="text" name="email2" value="<?php echo $user['email2']; ?>"></h4>
+        <h4>Bio: <input type="text" name="bio" value="<?php echo $user['bio']; ?>"></h4>
+        <h4>Education: <input type="text" name="education" value="<?php echo $user['education']; ?>"></h4>
+        <h4>Instagram: <input type="text" name="instagram" value="<?php echo $user['instagram']; ?>"></h4>
+        <h4>Linkedin: <input type="text" name="linkedin" value="<?php echo $user['linkedin']; ?>"></h4>
         <h4>Password: <a href="#">Change password</a> </h4>
         <input type="submit" name="save" value="Save">
     </form>
