@@ -39,36 +39,56 @@
         <input type="text" name="searchbalk" placeholder="Search">
         <input type="submit" name="search" value="Search">
     </form>
-
-    <div>
-        <?php foreach($projects as $project): ?>
-            <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
-                <img src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
-            <?php endforeach; ?>
-            <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>
-                <a href="">like</a>
-                <a href="">comment</a>
-                <a href="">save</a>
-                <img src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
-                <h4><?php echo $creator['username']; ?></h4>
-                <p><?php echo $project['timestamp']; ?></p>
-            <?php endif; ?>
-            <h3><?php echo $project['title'] ?></h3>
-            <p><?php echo $project['teaser'] ?></p>
+    <div class="feed">
+    <?php foreach($projects as $project): ?>
+        <div class="project" >
+                <div class="projectImageContainer">
+                <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
+                    <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
+                <?php endforeach; ?>
+                </div>
+                <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>
+                    <div class="firstDetails">
+                        <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
+                        <div class="details">
+                            <h4 id="postUsername" class="detailsText"><?php echo $creator['username']; ?></h4>
+                            <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
+                        </div>
+                        <div class="actions">
+                            <a href="" class="postAction" id="like">like</a>
+                            <a href="" class="postAction" id="comment">comment</a>
+                            <a href="" class="postAction" id="save">save</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="secondDetails">
+                    <div class="extraDetails">
+                        <h3 class="detailsText"><?php echo $project['title'] ?></h3>
+                        <p class="detailsText"><?php echo $project['teaser'] ?></p> 
+                    </div>
+                    <div class="tags">
+                        <?php foreach(Project::getTagsOfProject($project['id']) as $tag): ?>
+                            <a href="" class="tag"><?php echo '#'.$tag['name']; ?></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+        </div>
         <?php endforeach; ?>
     </div>
-    <?php if($page_number>=2): ?>
-        <a href="?page=<?php echo $page_number-1; ?>">Previous page</a>
-    <?php endif; ?>
-    <?php for ($i=1; $i<=$total_pages; $i++): ?>
-        <?php if ($i == $page_number): ?>
-            <a class="active" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php elseif($page_number-2 <= $i && $i <= $page_number+2): ?>
-            <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+    <div class="pagination">
+        <?php if($page_number>=2): ?>
+            <a class="page" href="?page=<?php echo $page_number-1; ?>">Previous page</a>
         <?php endif; ?>
-    <?php endfor; ?>
-    <?php if($page_number<$total_pages): ?>
-        <a href="index.php?page=<?php echo $page_number+1; ?>">Next page</a>
-    <?php endif; ?>
+        <?php for ($i=1; $i<=$total_pages; $i++): ?>
+            <?php if ($i == $page_number): ?>
+                <a class="active page" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php elseif($page_number-2 <= $i && $i <= $page_number+2): ?>
+                <a class="page" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+        <?php if($page_number<$total_pages): ?>
+            <a class="page" href="index.php?page=<?php echo $page_number+1; ?>">Next page</a>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
