@@ -51,7 +51,7 @@
                     <div class="firstDetails">
                         <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
                         <div class="details">
-                            <a id="postUsername" class="detailsText" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a>
+                            <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a></h4>
                             <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
                         </div>
                         <div class="actions">
