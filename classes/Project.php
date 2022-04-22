@@ -103,6 +103,12 @@
                 $project->bindValue(':user_id', $user_id);
                 $project->execute();
                 $project_id = $conn->lastInsertId();
+                foreach ($_POST['tags'] as $tag){
+                        $stmt = $conn->prepare("INSERT INTO project_tag (project_id, tag_id) VALUES (:project_id, :tag_id)");
+                        $stmt->bindValue(':project_id', $project_id);
+                        $stmt->bindValue(':tag_id', $tag);
+                        $stmt->execute();
+                }
                 return $project_id;
         }
 
@@ -120,6 +126,14 @@
                 $statement->bindValue("title", $title);
                 $statement->execute();
                 return $statement->fetch();
+        }
+
+        public static function getTagsOfProject($project_id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from project_tag join tags on project_tag.tag_id = tags.id where project_id = :project_id");
+                $statement->bindValue("project_id", $project_id);
+                $statement->execute();
+                return $statement->fetchAll();
         }
     }
 ?>
