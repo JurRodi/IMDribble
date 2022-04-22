@@ -25,20 +25,51 @@ h2{
     margin-bottom:10%;
     margin-top: 0%;
 }
-.loginform{
-    position: absolute;
-    margin-left: 60%;
-    margin-top: 7%;
+
+.split-screen{
+    display: flex;
+    flex-direction: column;
+    ;
 }
 
-.registerform{
-    margin-left: 60%;
+#quote{
+ max-width: 100%;
+
+}
+
+
+.left, .right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.right .copy{
+    text-align: left;
+}
+
+.right form{
+    width: 330px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"]{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius:8px;
+    border: 1px solid #c4c4c4;
+    margin-bottom: 1.25rem;
+    font-size: 25px;
 }
 
 label{
-    color: gray;
-    display: flex;
+    display: block;
     margin-bottom: 10px;
+    font-size: 20px;
+    color: gray;
 }
 
 input{
@@ -47,16 +78,21 @@ input{
     margin-bottom: 40px;
 }
 
-.button1{
-    font-size: 25px;
-    display: flex;
+.signup-btn{
+    display: block;
+    width: 50%;
+    margin-left: 25%;
     color: white;
     background-color: greenyellow;
     font-weight: 1000;
     margin-top: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    height: 40px;
 }
 
-.button1:hover{
+.signup-btn:hover{
     background-color: blue;
 }
 
@@ -146,3 +182,45 @@ input{
 .page{
     margin-right: 5px;
 }
+
+@media (min-width: 900px){
+
+
+    #quote{
+     max-width: 70%;
+   
+    }
+    .split-screen{
+        flex-direction:row;
+        height: 100vh;
+    }
+    .left, .right{
+        display: flex;
+        width:50%;
+        height: auto;
+    }
+
+ .right form{
+     width:400px;
+     margin-top: 0%;
+ }
+
+ label{
+     font-size: 20px;
+ }
+
+ form input[type="text"],
+form input[type="email"],
+form input[type="password"]{
+    font-size: 30px;
+    margin-bottom: 10%;
+}
+
+.signup-btn{
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 0%;
+}
+
+}
+

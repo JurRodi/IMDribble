@@ -40,6 +40,7 @@
         <h4>Password: <a href="#">Change password</a> </h4>
         <input type="submit" name="save" value="Save">
     </form>
+    <a href="deleteProfile.php">delete profile</a>
 </body>
 </html>
 

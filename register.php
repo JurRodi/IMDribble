@@ -31,11 +31,19 @@
     <link rel="stylesheet" type="" href="styling/style.css">
 </head>
 <body>
-    <div class="registerform">
-        <h1>Register</h1>
-        <h2>Create an account!</h2>
-        <form method="POST" action="">
-          <div class="userdetails"> 
+
+    <div class="split-screen">
+        <div class="left">
+            <img id="quote" src="images/quote.png" alt="quote">
+        </div>
+
+        <div class="right">
+            <form method="POST" action="">
+            <section class="copy">
+                <h1>Register</h1>
+                <h2>Create a account!</h2>
+            </section>
+            <div class="userdetails"> 
               <div class="input-box">
                 <label for="username">Username</label>
                 <input type="text" name="username" placeholder="username" >
@@ -52,10 +60,13 @@
                 <label for="password_conf">Repeat password</label>
                 <input type="password" name="password_conf" placeholder="password">
             </div>
-            <input class="button1" type="submit" value="Register">
+            <input class="signup-btn" type="submit" value="Register">
           </div> 
-        </form>
-    </div>    
+            </form>
+        
+
+        </div>
+    </div>
     <?php if(isset($error)): ?>
         <div><?php echo $error ?></div>
     <?php endif; ?>
