@@ -4,19 +4,8 @@
     Security::onlyLoggedInUsers();
     $user = User::getUserByEmail($_SESSION['email']);
     include_once(__DIR__. "/upload.php");
-    //Tag::getAllTags()
-    $tags = [
-        [
-            'id' => 1,
-            'name' => "Design"
-        ],
-        [
-            'id' => 2,
-            'name' => "Development"
-        ]
-    ];
-    //var_dump($tags);
-
+    $tags = Tag::getAll();
+    
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,12 +28,12 @@
         <input type="text" name="teaser" placeholder="Teaser" required>
         <label for="description">Description</label>
         <input type="text" name="description" placeholder="Description" required></br>
-        <select name="tags" required>
-            <option value="">Select a tag</option>
-            <?php foreach($tags as $tag): ?>
-                <option value="<?php echo $tag['id']; ?>"><?php echo $tag['name']; ?></option>
-            <?php endforeach; ?>
-        <input type="file" name="image" required></br>
+        <label for="tags">Tags</label>
+        <?php foreach($tags as $tag): ?>
+            <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
+            <label for="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></label>
+        <?php endforeach; ?>
+        </br><input type="file" name="image" required></br>
         <input type="submit" name="submit" value="Upload">
     </form>
 </body>
