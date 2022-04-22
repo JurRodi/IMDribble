@@ -7,6 +7,7 @@
     $projects = Project::getAll();
     $project_id = 1;
     $images = Project::getAllImagesOfProject($project_id);
+    
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,8 @@
         <?php endforeach; ?>
         <h3><?php echo $project['title'] ?></h3>
         <p><?php echo $project['teaser'] ?></p>
+        <?php $userOfProject = User::getUserById($project['user_id']) ?>
+        <a href="userProfile.php?u=<?php echo $userOfProject['id'] ?>"><?php echo $userOfProject['username'] ?></a>
     <?php endforeach; ?>
 </body>
 </html>

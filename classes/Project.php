@@ -85,5 +85,14 @@
                 $images = $statement->fetchAll();
                 return $images;
         }
+
+        public static function getProjectsByUserId($userId) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects where user_id = :userId");
+                $statement->bindValue(":userId", $userId);
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
     }
 ?>

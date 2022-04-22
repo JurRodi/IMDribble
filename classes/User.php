@@ -165,7 +165,15 @@
                 $statement->bindValue(':email', $email);
                 $statement->execute();
                 return $statement->fetch();
-            }
+        }
+
+        public static function getUserById($id) {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where id = :id;");
+            $statement->bindValue(':id', $id);
+            $statement->execute();
+            return $statement->fetch();
+        }
         
 
         /**
