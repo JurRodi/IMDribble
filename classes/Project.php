@@ -128,6 +128,14 @@
                 return $statement->fetch();
         }
 
+        public static function getProjectById($id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects where id = :id");
+                $statement->bindValue("id", $id);
+                $statement->execute();
+                return $statement->fetch();
+        }
+
         public static function getTagsOfProject($project_id){
                 $conn = Db::getConnection();
                 $statement = $conn->prepare("select * from project_tag join tags on project_tag.tag_id = tags.id where project_id = :project_id");
@@ -148,6 +156,15 @@
         public static function getAll() {
                 $conn = Db::getConnection();
                 $statement = $conn->prepare("select * from projects");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
+
+        public static function getProjectsByTags($tags) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from project_tag join projects on project_tag.project_id = project_id where tag_id = :tag_id");
+                $statement->bindValue(":tag_id", $tags);
                 $statement->execute();
                 $projects = $statement->fetchAll();
                 return $projects;
