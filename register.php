@@ -46,22 +46,23 @@
             <div class="userdetails"> 
               <div class="input-box">
                 <label for="username">Username</label>
-                <input type="text" name="username" placeholder="username" >
+                <input class="login-input" type="text" name="username" placeholder="username" >
             </div>
             <div class="input-box">
                 <label for="email">Email</label>
-                <input type="text" name="email" placeholder="email" >
+                <input class="login-input" type="text" name="email" placeholder="email" >
             </div>
             <div class="input-box">
                 <label for="password">Password</label>
-                <input type="password" name="password" placeholder="password">
+                <input class="login-input" type="password" name="password" placeholder="password">
             </div>
             <div class="input-box">
                 <label for="password_conf">Repeat password</label>
-                <input type="password" name="password_conf" placeholder="password">
+                <input class="login-input" type="password" name="password_conf" placeholder="password">
             </div>
             <input class="signup-btn" type="submit" value="Register">
           </div> 
+                <a class="link2" href="login.php">Go to log in</a>
             </form>
         
 

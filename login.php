@@ -42,15 +42,16 @@
             <div class="userdetails"> 
               <div class="input-box">
                 <label for="email">Email</label>
-                <input type="text" name="email" placeholder="email" >
+                <input class="login-input" type="text" name="email" placeholder="email" >
             </div>
             <div class="userdetails"> 
               <div class="input-box">
                 <label for="password">Password</label>
-                <input type="password" name="password" placeholder="password">
+                <input class="login-input" type="password" name="password" placeholder="password">
               </div>
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
+            <a class="link1"  href="register.php">Go to registration</a>
             </form>
     </div>
     </div>
