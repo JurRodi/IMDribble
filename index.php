@@ -17,11 +17,21 @@
     $projects = Project::getAmountPerPage($limit, $offset);
     $total = Project::countAll();
     $total_pages = ceil($total[0]['total'] / $limit);
+    $tags = Tag::getAll();
 
     if(isset($_POST['search'])){
         $search = $_POST['searchbalk'];
         $searched_project = Project::getProjectbyTitle($search);
-        var_dump($searched_project);
+        $id = $searched_project['id'];
+        header("Location: project.php?p=".$id);
+    }
+
+    if(isset($_POST['filter'])){
+        $filter = $_POST['filter'];
+        var_dump($filter);
+        $filtered_projects = Project::getProjectsByTags($filter);
+        $projects = $filtered_projects;
+        var_dump($projects);
     }
 
 ?><!DOCTYPE html>
@@ -39,12 +49,20 @@
         <input type="text" name="searchbalk" placeholder="Search">
         <input type="submit" name="search" value="Search">
     </form>
+    <form action="" method="POST">
+        <label for="tags">Tags</label>
+        <?php foreach($tags as $tag): ?>
+            <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
+            <label for="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></label>
+        <?php endforeach; ?>
+        <input type="submit" name="filter" value="Filter">
+    </form>
     <div class="feed">
     <?php foreach($projects as $project): ?>
         <div class="project" >
                 <div class="projectImageContainer">
                 <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
-                    <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
+                    <a href="project.php?p=<?php echo $project['id'] ?>"><img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project"></a>
                 <?php endforeach; ?>
                 </div>
                 <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>
