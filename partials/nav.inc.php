@@ -34,9 +34,11 @@
     <div>
         <?php if(!isset($_SESSION['email'])): ?>
             <a href="login.php">Log in</a>
-        <?php endif; ?>
-        <a href="logout.php" class="nav-link link-active">
+        <?php else: ?>
+            <a href="logout.php" class="nav-link link-active">
             <i class="material-icons nav-icon">logout</i>
         </a>
+        <?php endif; ?>
+        
     </div>
 </nav>
