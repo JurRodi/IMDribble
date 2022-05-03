@@ -169,5 +169,32 @@
                 $projects = $statement->fetchAll();
                 return $projects;
         }
+
+        public static function deleteProject($id){
+                $conn = Db::getConnection();
+                $statementProject = $conn->prepare("DELETE * from projects where project_id = :id");
+                $statementProject->bindValue("id",$id);
+                $statementProject->execute();
+        }
+
+
+        //update projects
+        public static function updateProject(){
+                $conn = Db::getConnection();
+                // $statementTitle = $conn->prepare("UPDATE title from projects where project_id = :id") ;
+                // $statementTeaser = $conn->prepare("UPDATE teaser from projects where project_id = :id") ;
+                // $statementDescription = $conn->prepare("UPDATE description from projects where project_id = :id") ;
+
+                // of op deze manier?
+                $statement=$conn->prepare("UPDATE projects set titel = :titel, teaser = :teaser, description = :description where project_id = :id");
+
+
+                //title verkeerd gescreven!
+
+                // $statement->bindValue(":titel", $this->titel);
+                // $statement->bindValue(":teaser", $this->teaser);
+                // $statement->bindValue(":description", $this->description);
+                // return $statement->execute();
+        }
     }
 ?>
