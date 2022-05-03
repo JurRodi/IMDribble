@@ -247,4 +247,22 @@
             $statement->bindValue(":linkedin", $this->linkedin);
             return $statement->execute();
         }
+
+        public static function deleteUser($id, $email){
+            $conn = Db::getConnection();
+            $statementProject = $conn->prepare("DELETE * from projects where user_id = :id;");
+            $statementLike = $conn->prepare("DELETE * from likes where user_id = :id;");
+            $statementComments = $conn->prepare("DELETE * comments from users where user_id = :id;");
+            $statement = $conn->prepare("DELETE * from users where email = :email;");
+            
+            $statementProject->bindValue("id",$id);
+            $statementLike->bindValue("id",$id);
+            $statementComments->bindValue("id",$id);
+            $statement->bindValue("email",$email);
+        
+            $statementProject->execute();
+            $statementLike->execute();
+            $statementComments->execute();
+            $statement->execute();
+        }
     }
