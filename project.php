@@ -9,10 +9,11 @@
     
     $project = Project::getProjectById($_GET['p']);
 
-    if(isset($_POST['search'])){
+    if(isset($_POST['search']) && !empty($_POST['searchbalk'])){
         $search = $_POST['searchbalk'];
         $searched_project = Project::getProjectbyTitle($search);
-        var_dump($searched_project);
+        $id = $searched_project['id'];
+        header("Location: project.php?p=".$id);
     }
 
 ?><!DOCTYPE html>
@@ -26,7 +27,7 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <form action="<?php echo "index.php?project=".$searched_project['id']; ?>" method="POST">
+    <form action="" method="POST">
         <input type="text" name="searchbalk" placeholder="Search">
         <input type="submit" name="search" value="Search">
     </form>
@@ -62,6 +63,9 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <?php if($user['id'] === $project['user_id']): ?>
+                    <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
+                <?php endif; ?>
         </div>
     </div>
 </body>
