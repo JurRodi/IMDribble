@@ -19,7 +19,7 @@
     $total_pages = ceil($total[0]['total'] / $limit);
     $tags = Tag::getAll();
 
-    if(isset($_POST['search'])){
+    if(isset($_POST['search']) && !empty($_POST['searchbalk'])){
         $search = $_POST['searchbalk'];
         $searched_project = Project::getProjectbyTitle($search);
         $id = $searched_project['id'];
