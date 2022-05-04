@@ -172,9 +172,9 @@
 
         public static function deleteProject($id){
                 $conn = Db::getConnection();
-                $statementProject = $conn->prepare("DELETE * from projects where project_id = :id");
+                $statementProject = $conn->prepare("DELETE from projects where id = :id");
                 $statementProject->bindValue("id",$id);
-                $statementProject->execute();
+                return $statementProject->execute();
         }
 
 
