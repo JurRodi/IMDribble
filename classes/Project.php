@@ -161,13 +161,22 @@
                 return $projects;
         }
 
-        public static function getProjectsByTags($tags) {
+        public static function getProjectsByTags($tags, $limit, $offset) {
                 $conn = Db::getConnection();
-                $statement = $conn->prepare("select * from project_tag join projects on project_tag.project_id = project_id where tag_id = :tag_id");
+                $statement = $conn->prepare("select * from project_tag join projects on project_tag.project_id = projects.id where tag_id = :tag_id order by timestamp desc limit $limit offset $offset");
                 $statement->bindValue(":tag_id", $tags);
                 $statement->execute();
                 $projects = $statement->fetchAll();
                 return $projects;
+        }
+
+        public static function countAllByTags($tags) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select count(project_id) as total from project_tag join projects on project_tag.project_id = projects.id where tag_id = :tag_id");
+                $statement->bindValue(":tag_id", $tags);
+                $statement->execute();
+                $count = $statement->fetchAll();
+                return $count;
         }
 
         public static function deleteProject($id){
