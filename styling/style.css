@@ -230,6 +230,10 @@ input{
     margin-right: 5px;
 }
 
+.active-tag{
+    color: rgb(221, 32, 205);
+}
+
 @media (min-width: 900px){
 
 
