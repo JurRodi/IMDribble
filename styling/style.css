@@ -238,6 +238,7 @@ input{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
 }
 
 .filters{
@@ -247,11 +248,15 @@ input{
 }
 
 .filter{
-    margin-left: 5px;
+    margin: 0 0 0 8px;
+    padding: 4px 6px;
+    background-color: #BFFD00;
+    border-radius: 8px;
 }
 
 .active-filter{
-    color: rgb(221, 32, 205);
+    color: #FFFFFF;
+    background-color: #1D1AFF;
 }
 
 @media (min-width: 900px){
