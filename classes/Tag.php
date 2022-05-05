@@ -30,4 +30,12 @@
             $statement->execute();
             return $statement->fetchAll();
         }
+
+        public static function getTagByName($name){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from tags where name = :name");
+            $statement->bindValue(":name", $name);
+            $statement->execute();
+            return $statement->fetch();
+        }
     }
