@@ -27,10 +27,7 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <form action="" method="POST">
-        <input type="text" name="searchbalk" placeholder="Search">
-        <input type="submit" name="search" value="Search">
-    </form>
+
     <div class="feed">
         <div class="project" >
                 <div class="projectImageContainer">
