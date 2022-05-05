@@ -14,23 +14,26 @@
     }
     $limit = 21;
     $offset = $limit * ($page_number - 1);
-    $projects = Project::getAmountPerPage($limit, $offset);
-    $total = Project::countAll();
-    $total_pages = ceil($total[0]['total'] / $limit);
     $tags = Tag::getAll();
+
+    if(isset($_GET['tags'])){
+        $searched_tag = Tag::getTagByName($_GET['tags']);
+        $projects = Project::getProjectsByTags($searched_tag['id'], $limit, $offset);
+        $total = Project::countAllByTags($searched_tag['id']);
+        $total_pages = ceil($total[0]['total'] / $limit);
+        $active = $_GET['tags'];
+    } else{
+        $projects = Project::getAmountPerPage($limit, $offset);
+        $total = Project::countAll();
+        $total_pages = ceil($total[0]['total'] / $limit);
+    }
+    
 
     if(isset($_POST['search']) && !empty($_POST['searchbalk'])){
         $search = $_POST['searchbalk'];
         $searched_project = Project::getProjectbyTitle($search);
         $id = $searched_project['id'];
         header("Location: project.php?p=".$id);
-    }
-
-    if(isset($_POST['filter'])){
-        $filter = $_POST['filter'];
-        var_dump($filter);
-        $projects = Project::getProjectsByTags($filter);
-        var_dump($projects);
     }
 
 ?><!DOCTYPE html>
@@ -45,18 +48,18 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <form action="" method="POST">
-        <input type="text" name="searchbalk" placeholder="Search">
-        <input type="submit" name="search" value="Search">
-    </form>
-    <form action="" method="POST">
-        <label for="tags">Tags</label>
-        <?php foreach($tags as $tag): ?>
-            <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
-            <label for="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></label>
-        <?php endforeach; ?>
-        <input type="submit" name="filter" value="Filter">
-    </form>
+    <div class="search-filter">
+        <form action="" method="POST">
+            <input type="text" name="searchbalk" placeholder="Search">
+            <input type="submit" name="search" value="Search">
+        </form>
+        <div class="filters">
+            <h3>Filters: </h3>
+            <?php foreach($tags as $tag): ?>
+                <a class="filter <?php if($active === $tag['name']){ echo "active-filter";} ?>" href="?tags=<?php echo $tag['name'] ?>"> <?php echo '#'.$tag['name'] ?></a>
+            <?php endforeach; ?>
+        </div>
+    </div>
     <div class="feed">
     <?php foreach($projects as $project): ?>
         <div class="project" >
@@ -86,7 +89,7 @@
                     </div>
                     <div class="tags">
                         <?php foreach(Project::getTagsOfProject($project['id']) as $tag): ?>
-                            <a href="" class="tag"><?php echo '#'.$tag['name']; ?></a>
+                            <a href="?tags=<?php echo $tag['name'] ?>" class="tag"><?php echo '#'.$tag['name']; ?></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -95,17 +98,17 @@
     </div>
     <div class="pagination">
         <?php if($page_number>=2): ?>
-            <a class="page" href="?page=<?php echo $page_number-1; ?>">Previous page</a>
+            <a class="page" href="<?php if(isset($searched_tag)): echo "?tags=".$searched_tag['name']."&"."" ; endif; echo "?page=".$page_number-1 ?>">Previous page</a>
         <?php endif; ?>
         <?php for ($i=1; $i<=$total_pages; $i++): ?>
             <?php if ($i == $page_number): ?>
-                <a class="active page" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                <a class="active page" href="<?php if(isset($searched_tag)): echo "?tags=".$searched_tag['name']."&"."" ; endif; echo "?page=".$i ?>"><?php echo $i; ?></a>
             <?php elseif($page_number-2 <= $i && $i <= $page_number+2): ?>
-                <a class="page" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                <a class="page" href="<?php if(isset($searched_tag)): echo "?tags=".$searched_tag['name']."&"."" ; endif; echo "?page=".$i ?>"><?php echo $i; ?></a>
             <?php endif; ?>
         <?php endfor; ?>
         <?php if($page_number<$total_pages): ?>
-            <a class="page" href="index.php?page=<?php echo $page_number+1; ?>">Next page</a>
+            <a class="page" href="<?php if(isset($searched_tag)): echo "?tags=".$searched_tag['name']."&"."" ; endif; echo "?page=". $page_number+1 ?>" >Next page</a>
         <?php endif; ?>
     </div>
 </body>

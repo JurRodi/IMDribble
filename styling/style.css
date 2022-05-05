@@ -234,6 +234,26 @@ input{
     color: rgb(221, 32, 205);
 }
 
+.search-filter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.filters{
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.filter{
+    margin-left: 5px;
+}
+
+.active-filter{
+    color: rgb(221, 32, 205);
+}
+
 @media (min-width: 900px){
 
 
