@@ -21,7 +21,7 @@
 </ul>
 
 <nav class="navbar">
-<img class="logo" src="images/logo.png" alt="Logo"> 
+    <a href="index.php"><img class="logo" src="images/logo.png" alt="Logo"> </a>
     <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="#">Explore?</a></li>

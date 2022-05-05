@@ -256,7 +256,7 @@ input{
     .navbar ul{
         flex: 1;
         text-align: center;
-        margin-left: -12%;
+        margin-right: 12%;
         font-weight: bold;
         
     }

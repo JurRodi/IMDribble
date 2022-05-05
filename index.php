@@ -29,8 +29,7 @@
     if(isset($_POST['filter'])){
         $filter = $_POST['filter'];
         var_dump($filter);
-        $filtered_projects = Project::getProjectsByTags($filter);
-        $projects = $filtered_projects;
+        $projects = Project::getProjectsByTags($filter);
         var_dump($projects);
     }
 
