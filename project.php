@@ -1,6 +1,8 @@
 <?php 
 
     include_once(__DIR__. "/bootstrap.php");
+    include_once(__DIR__. "/classes/Comment.php");
+    $allComments = Comment::getAll($_GET['p']);
 
     session_start();
     if(isset($_SESSION['email'])){
@@ -60,10 +62,29 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <div class="commentSection">
+                    <div class="commentForm">
+                        <input type="text" id="commentText" placeholder="Write a comment">
+                        <a href="#" class="submitComment" data-postid="<?php echo $project['id'] ?>">Post comment</a>
+                    </div>
+                    <ul class="CommentList">
+                        <?php foreach($allComments as $comment): ?>
+                            <?php $commentUser = User::getUserById($comment['userid']) ?>
+                            <li>
+                                <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $commentUser['id'] ?>"><?php echo $commentUser['username'] ?> commented:</a></h4>
+                                <p><?php echo $comment['text'] ?></p>
+                                <?php if($_SESSION['email'] === $commentUser['email'] || $_SESSION['email'] === $commentUser['email2']): ?>
+                                <a href="#" class="deleteComment" data-commentid="<?php echo $comment['id'] ?>">delete comment</a>
+                                <?php endif ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
                 <?php if($user['id'] === $project['user_id']): ?>
                     <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
                 <?php endif; ?>
         </div>
     </div>
+    <script src="./scripts/ajax.js"></script>
 </body>
 </html>
