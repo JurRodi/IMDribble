@@ -6,6 +6,7 @@
             $user = new User();
             
             $user->setUsername($_POST['username']);
+            //ajax gebruiken om zien op email al gebruikt
             $user->setEmail($_POST['email']);
             $user->setPassword($_POST['password']);
             $user->setPassword_conf($_POST['password_conf']);
@@ -44,21 +45,21 @@
                 <h2>Create a account!</h2>
             </section>
             <div class="userdetails"> 
-              <div class="input-box">
+              <div class="input-box" id="usernameInputSection">
                 <label for="username">Username</label>
-                <input class="login-input" type="text" name="username" placeholder="username" >
+                <input class="login-input" id="username-input" type="text" name="username" placeholder="username" >
             </div>
-            <div class="input-box">
+            <div class="input-box" id="emailInputSection">
                 <label for="email">Email</label>
-                <input class="login-input" type="text" name="email" placeholder="email" >
+                <input class="login-input" id="email-input" type="text" name="email" placeholder="email" >
             </div>
             <div class="input-box">
                 <label for="password">Password</label>
-                <input class="login-input" type="password" name="password" placeholder="password">
+                <input class="login-input" type="password" name="password" placeholder="password" autocomplete="on">
             </div>
             <div class="input-box">
                 <label for="password_conf">Repeat password</label>
-                <input class="login-input" type="password" name="password_conf" placeholder="password">
+                <input class="login-input" type="password" name="password_conf" placeholder="password" autocomplete="on">
             </div>
             <input class="signup-btn" type="submit" value="Register">
           </div> 
@@ -71,6 +72,6 @@
     <?php if(isset($error)): ?>
         <div><?php echo $error ?></div>
     <?php endif; ?>
-    
+    <script src="./scripts/login.js"></script>
 </body>
 </html>

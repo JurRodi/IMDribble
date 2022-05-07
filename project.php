@@ -85,6 +85,6 @@
                 <?php endif; ?>
         </div>
     </div>
-    <script src="./scripts/ajax.js"></script>
+    <script src="./scripts/comments.js"></script>
 </body>
 </html>

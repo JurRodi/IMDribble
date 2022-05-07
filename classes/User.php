@@ -174,7 +174,21 @@
             $statement->execute();
             return $statement->fetch();
         }
-        
+
+        public static function getUserByUsername($username) {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where username = :username;");
+            $statement->bindValue(':username', $username);
+            $statement->execute();
+           
+            $existingUser = $statement->fetch();
+            if($existingUser){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 
         /**
          * Get the value of education

@@ -84,3 +84,4 @@ for ( var i = 0; i < deleteCommentButtons.length; i++){
         console.error('Error:', error);
     });
 })};
+
