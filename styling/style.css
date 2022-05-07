@@ -156,6 +156,10 @@ input{
     margin-bottom: 80px;
 }
 
+.profileProject{
+    height: 410px;
+}
+
 .projectImageContainer{
     height: 300px;
     width: 100%;
@@ -259,6 +263,84 @@ input{
     background-color: #1D1AFF;
 }
 
+.profileDetails{
+    padding: 50px 0 40px 0;
+    border-bottom: 2px solid rgb(188, 188, 188);
+}
+
+.profileDetails > *{
+    text-align: center;
+}
+
+.profileDetails .avatar{
+    display:block;
+    margin: auto;
+    height: 100px;
+    min-width: 100x;
+}
+
+.settingIcon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: blue;
+}
+.closeIcon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: blue;
+}
+
+#linkedin{
+    display:inline-block;
+    margin: auto auto auto 10px;
+    background-image: url("../icons/linkedin.png");
+    height: 30px; 
+    width: 30px;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+#instagram{
+    display:inline-block;
+    margin: auto 10px auto auto;
+    background-image: url("../icons/instagram.png");
+    height: 30px; 
+    width: 30px;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+#settingsForm{
+    display: block;
+    max-width: 80%;
+    /* margin-left: 25%; */
+    margin: auto;
+}
+
+#settingsForm form input{
+    width: 100%;
+}
+
+.btn{
+    display: block;
+    width: 100%;
+    color: white;
+    background-color: greenyellow;
+    font-weight: 1000;
+    margin-top: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color: blue;
+}
+
 @media (min-width: 900px){
 
 
@@ -329,6 +411,30 @@ input{
     width: 70%;
     margin-left: 15%;
     margin-bottom: 0%;
+}
+
+.profileDetails{
+    display: flex;
+    padding: 0% 20% 5% 20% ;
+}
+
+.profileDetails > *{
+    text-align: left;
+}
+.profileDetails .avatar{
+    flex: 20;
+}
+.userData{
+    flex: 70;
+}
+.settingIcon{
+    position: relative;
+}
+.closeIcon{
+    position: relative;
+}
+#settingsForm{
+    max-width: 40%;
 }
 
 }

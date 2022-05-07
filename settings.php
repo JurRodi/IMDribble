@@ -37,32 +37,48 @@
     <link rel="stylesheet" href="styling/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
-<body>
+<body >
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <div class="avatar">
-        <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+    <div id="settingsForm">
+        <div class="avatar">
+            <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+        </div>
+        <br>
+        <?php if(!empty($statusMsg)): ?>
+            <div class="alert"><?php echo $statusMsg; ?></div>
+        <?php endif; ?>
+        <form action="" method="POST" enctype="multipart/form-data" >
+            <input type="file" name="image">
+            <input type="submit" name="submit" value="Upload" class="btn">
+        </form>
+        <form action="" method="POST" >
+            <label for="username">Username</label>
+            <input type="text" name="username" value="<?php echo $user['username']; ?>">
+
+            <label for="email">Email</label>
+            <input type="text" name="email" value="<?php echo $user['email']; ?>">
+
+            <label for="email2">Second email</label>
+            <input type="text" name="email2" value="<?php echo $user['email2']; ?>">
+
+            <label for="bio">Bio</label>
+            <input type="text" name="bio" value="<?php echo $user['bio']; ?>">
+
+            <label for="education">Education</label>
+            <input type="text" name="education" value="<?php echo $user['education']; ?>">
+
+            <label for="instagram">Instagram</label>
+            <input type="text" name="instagram" value="<?php echo $user['instagram']; ?>">
+
+            <label for="linkedin">Linkedin</label>
+            <input type="text" name="linkedin" value="<?php echo $user['linkedin']; ?>">
+        
+            <input type="submit" name="save" value="Save" class="btn">
+        </form>
+        <a href="#" id="cp-button" class="cp-button" >Change password</a> </br>
+        <a href="deleteProfile.php">delete profile</a>
     </div>
-    <br>
-    <?php if(!empty($statusMsg)): ?>
-        <div class="alert"><?php echo $statusMsg; ?></div>
-    <?php endif; ?>
-    <form action="" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit" name="submit" value="Upload">
-    </form>
-    <form action="" method="POST">
-        <h4>Username: <input type="text" name="username" value="<?php echo $user['username']; ?>" ></h4>
-        <h4>Email: <input type="text" name="email" value="<?php echo $user['email']; ?>"></h4>
-        <h4>Second email: <input type="text" name="email2" value="<?php echo $user['email2']; ?>"></h4>
-        <h4>Bio: <input type="text" name="bio" value="<?php echo $user['bio']; ?>"></h4>
-        <h4>Education: <input type="text" name="education" value="<?php echo $user['education']; ?>"></h4>
-        <h4>Instagram: <input type="text" name="instagram" value="<?php echo $user['instagram']; ?>"></h4>
-        <h4>Linkedin: <input type="text" name="linkedin" value="<?php echo $user['linkedin']; ?>"></h4>
-     
-        <input type="submit" name="save" value="Save">
-    </form>
-    <a href="#" id="cp-button" class="cp-button" >Change password</a> </br>
-    <a href="deleteProfile.php">delete profile</a>
+    
 
   <!--modal section -->
    
