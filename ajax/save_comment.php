@@ -9,12 +9,13 @@
         $user = User::getUserByEmail($_SESSION['email']);
         $username = $user['username'];
         $c->setUserId($user['id']);
-        $c->save();
+        $id = $c->save();
 
         $response = [
             'status' => 'succes',
             'body' => htmlspecialchars($c->getText()),
             'username' => htmlspecialchars($username),
+            'id' => $id,
             'message' => 'Comment saved'
         ];
 

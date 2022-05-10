@@ -54,8 +54,8 @@
             $statement->bindValue(':postId', $postId);
             $statement->bindValue(':userId', $userId);
 
-            $result = $statement->execute();
-            return $result;
+            $statement->execute();
+            return $conn->lastInsertId();
         }
 
         public function delete(){
