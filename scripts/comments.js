@@ -30,7 +30,7 @@ document.querySelector(".submitComment").addEventListener("click", function(even
         deleteComment.dataset.commentId = result.id;
         deleteComment.addEventListener("click", function(event){
             event.preventDefault();
-            let commentId = this.dataset.commentId;//is er niet=>gaat niet deleten uit db
+            let commentId = this.dataset.commentId;
 
             const formData = new FormData();
             formData.append('commentId', commentId);
