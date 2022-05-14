@@ -189,6 +189,19 @@
                 return false;
             }
         }
+        public static function getExistingEmail($email) {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where email = :email;");
+            $statement->bindValue(':email', $email);
+            $statement->execute();
+            $existingEmail = $statement->fetch();
+            if($existingEmail){
+                return true;
+            }
+            else{
+                return false;
+            }
+    }
 
         /**
          * Get the value of education

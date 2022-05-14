@@ -2,7 +2,7 @@
     include_once(__DIR__ . "/../classes/User.php");
     session_start();
     if(!empty($_POST)){
-        $user = User::getUserByEmail($_POST['email']);
+        $user = User::getExistingEmail($_POST['email']);
 
         $response = [
             'status' => 'succes',

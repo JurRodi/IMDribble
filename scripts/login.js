@@ -36,15 +36,15 @@ document.querySelector("#email-input").addEventListener("input", function(event)
     })
     .then(response => response.json())
     .then(result => {
-        if(result.body === false){
-            if (document.contains(document.querySelector(".emailError"))) {
-                document.querySelector(".emailError").remove();
-            }
-        }else{
+        if(result.body === true){
             let emailError = document.createElement('p');
             emailError.classList.add("emailError");
             emailError.innerHTML = "This email has already been used by another user. Please use another one";
             document.querySelector("#emailInputSection").appendChild(emailError);
+        }else{
+            if (document.contains(document.querySelector(".emailError"))) {
+                document.querySelector(".emailError").remove();
+            }
         }
 
     })
