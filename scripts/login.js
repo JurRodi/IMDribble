@@ -10,13 +10,16 @@ document.querySelector("#username-input").addEventListener('input', function(eve
     .then(response => response.json())
     .then(result => {
         if(result.body === true){
+            document.getElementById('username-input').style.marginBottom='0px';
             let usernameError = document.createElement('p');
             usernameError.classList.add("usernameError");
+            usernameError.style.fontSize='15px';
             usernameError.innerHTML = "This username already exists. Please pick another one";
             document.querySelector("#usernameInputSection").appendChild(usernameError);
         }else{
             if (document.contains(document.querySelector(".usernameError"))) {
                 document.querySelector(".usernameError").remove();
+                document.getElementById('username-input').style.marginBottom='10%';
             }
         }
 
@@ -37,13 +40,16 @@ document.querySelector("#email-input").addEventListener("input", function(event)
     .then(response => response.json())
     .then(result => {
         if(result.body === true){
+            document.getElementById('email-input').style.marginBottom='0px';
             let emailError = document.createElement('p');
             emailError.classList.add("emailError");
+            emailError.style.fontSize='15px';
             emailError.innerHTML = "This email has already been used by another user. Please use another one";
             document.querySelector("#emailInputSection").appendChild(emailError);
         }else{
             if (document.contains(document.querySelector(".emailError"))) {
                 document.querySelector(".emailError").remove();
+                document.getElementById('email-input').style.marginBottom='10%';
             }
         }
 

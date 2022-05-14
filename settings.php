@@ -6,7 +6,6 @@
     $user = User::getUserByEmail($_SESSION['email']);
 
     if(isset($_POST['save'])){
-        echo $_SESSION['email'];
         try{
             $updatedUser = new User();
             $updatedUser->getUserByEmail($_SESSION['email']);
@@ -17,7 +16,7 @@
             $updatedUser->setInstagram($_POST["instagram"]);
             $updatedUser->setLinkedin($_POST["linkedin"]);
             $updatedUser->updateProfile();
-            header("Location: profile.php");
+            header("Location: profile.php?status=success");
         }
         catch(Throwable $e){
             $error = $e->getMessage();
@@ -72,7 +71,9 @@
 
             <label for="linkedin">Linkedin</label>
             <input type="text" name="linkedin" value="<?php echo $user['linkedin']; ?>">
-        
+            <?php if(isset($error)): ?>
+                <p><?php echo $error ?></p>
+            <?php endif; ?>
             <input type="submit" name="save" value="Save" class="btn">
         </form>
         <a href="#" id="cp-button" class="cp-button" >Change password</a> </br>
