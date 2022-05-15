@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDribble</title>
+    <style><?php include 'styling/style.css'; ?></style>
     <link rel="stylesheet" href="styling/style.css">
     <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -40,6 +41,15 @@
             <?php if (!empty($user['linkedin'])): ?>
                 <a href="<?php echo $user['linkedin']; ?>"><div id="linkedin"></div></a>
             <?php endif; ?>
+            
+            <div id="followUnfollowBtn">
+                <?php $user1 = User::getUserByEmail($_SESSION['email']) ?>
+                <?php if(Follow::getFollow($user1['id'],$_GET['u']) === false):  ?>    
+                    <a href="#" class="followBtn" data-user="<?php echo $_GET['u'] ?>">Follow</a>
+                <?php else:?>
+                    <a href="#" class="unfollowBtn" data-user="<?php echo $_GET['u'] ?>">Unfollow</a>
+                <?php endif ?>
+            </div>
         </div>
         <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>" class="closeIcon">
             <span class="material-symbols-outlined">close</span>
@@ -59,6 +69,6 @@
             </div>
         <?php endforeach; ?>
     </div>
-    
+    <script src="./scripts/follow.js"></script>
 </body>
 </html>
