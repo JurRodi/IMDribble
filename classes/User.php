@@ -40,16 +40,12 @@
                 return $this->email2;
         }
 
-        /**
-         * Set the value of email2
-         *
-         * @return  self
-         */ 
-        public function setEmail2($email2)
-        {
-                $this->email2 = $email2;
-
-                return $this;
+        public function setEmail2($email2){
+            if(strpos($email2, '@') === false && strpos($email2, '.') === false ) {
+                throw new Exception("Use a valid second email adress");
+            }
+            $this->email2 = $email2;
+            return $this;
         }
 
         public function getPassword(){
@@ -238,9 +234,11 @@
          */ 
         public function setInstagram($instagram)
         {
-                $this->instagram = $instagram;
-
-                return $this;
+            if (filter_var($instagram, FILTER_VALIDATE_URL) === FALSE) {
+                throw new Exception("The link to your instagram account is not a valid url.");
+            }
+            $this->instagram = $instagram;
+            return $this;
         }
 
         /**
@@ -258,32 +256,21 @@
          */ 
         public function setLinkedin($linkedin)
         {
-                $this->linkedin = $linkedin;
-
-                return $this;
+            if (filter_var($linkedin, FILTER_VALIDATE_URL) === FALSE) {
+                throw new Exception("The link to your linkedin account is not a valid url.");
+            }
+            $this->linkedin = $linkedin;
+            return $this;
         }
 
         public function updateProfile(){
             $conn = Db::getConnection();
             $statement=$conn->prepare("update users set bio = :bio, education = :education, email2 = :email2, instagram = :instagram, linkedin = :linkedin where email = :email");
-            
             $statement->bindValue(":email", $this->email);
             $statement->bindValue(":bio", $this->bio);
             $statement->bindValue(":education", $this->education);
-            
-            if(strpos($this->email2, '@') === false && strpos($this->email2, '.') === false ) {
-                throw new Exception("Use a valid second email adress");
-            }
             $statement->bindValue(":email2", $this->email2);
-            
-            if (filter_var($this->instagram, FILTER_VALIDATE_URL) === FALSE) {
-                throw new Exception("The link to your instagram account is not a valid url.");
-            }
             $statement->bindValue(":instagram", $this->instagram);
-
-            if (filter_var($this->linkedin, FILTER_VALIDATE_URL) === FALSE) {
-                throw new Exception("The link to your linkedin account is not a valid url.");
-            }
             $statement->bindValue(":linkedin", $this->linkedin);
             return $statement->execute();
         }
