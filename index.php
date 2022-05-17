@@ -48,6 +48,10 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
+    <div class="alt-timeline">
+    <a href="" class="nav-link link-active">
+    </div>
+    
     <div class="search-filter">
         <form action="" method="POST">
             <input type="text" name="searchbalk" placeholder="Search">

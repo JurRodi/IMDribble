@@ -26,6 +26,7 @@
     <div class="avatar">
         <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
     </div>
+    
     <h3><?php echo $user['username']; ?></h3>
     <?php if (!empty($user['education'])): ?>
     <p>Student: <?php echo $user['education']; ?></p>
@@ -45,6 +46,8 @@
         <?php endforeach; ?>
         <h3><?php echo $project['title'] ?></h3>
         <p><?php echo $project['teaser'] ?></p>
-    <?php endforeach; ?>
+    
+        <?php endforeach; ?>
+   
 </body>
 </html>

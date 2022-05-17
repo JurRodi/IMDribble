@@ -24,6 +24,8 @@
     <div class="avatar">
         <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
     </div>
+    
+
     <h3><?php echo $user['username']; ?></h3>
     <?php if (!empty($user['education'])): ?>
     <p>Student: <?php echo $user['education']; ?></p>
@@ -44,5 +46,39 @@
         <h3><?php echo $project['title'] ?></h3>
         <p><?php echo $project['teaser'] ?></p>
     <?php endforeach; ?>
+    <div>
+    <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
+    </div>
+
+     <!--modal section -->
+     <div class="bg-popup">
+       <div class="modal-content2">
+       <div class="close" >+</div>
+       
+       <h1>You are reporting a user</h1>
+       <h2>Why are you reporting this user?</h2>
+       
+     <form name= "report" id="report">
+        
+        
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Scammer">Scammer</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Bullying">Bullying</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Pretends to be someone else">Pretends to be someone else</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Not a student/teacher">Not a student/teacher</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate language">inapropriate language</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate content">inapropriate content</p>
+        
+        <input class="report-btn" name="reportuser" type="submit" value="REPORT USER">
+     </form>
+
+
+      
+
+     
+            
+       
+       
+  
+   <script src="scripts/reportuser.js"></script>
 </body>
 </html>

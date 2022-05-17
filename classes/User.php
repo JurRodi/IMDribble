@@ -265,4 +265,16 @@
             $statementComments->execute();
             $statement->execute();
         }
+
+        public static function changePassword($email, $password){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("update users set password = :password where email = :email;");
+            $options = [ 
+                'cost' => 14
+            ];
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT, $options);
+            $statement->bindValue(':email', $email);
+            $statement->bindValue(':password', $hashed_password);
+            return $statement->execute();
+        }
     }

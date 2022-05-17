@@ -52,6 +52,7 @@
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
             <a class="link1"  href="register.php">Go to registration</a>
+            
             </form>
     </div>
     </div>

@@ -61,6 +61,7 @@
                     </div>
                 </div>
                 <?php if($user['id'] === $project['user_id']): ?>
+                    <a href="editProject.php?p=<?php echo $project['id'] ?>">Edit project</a>
                     <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
                 <?php endif; ?>
         </div>
