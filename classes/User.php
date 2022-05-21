@@ -19,6 +19,14 @@
             if(empty($username)){
                 throw new Exception("Username cannot be empty.");
             }
+            $conn = Db::getConnection();
+            $statement=$conn->prepare("select * from users where username=:username");
+            $statement->bindValue(":username", $username);
+            $statement->execute();
+            $existingUser = $statement->fetch();
+            if($existingUser){
+                throw new Exception("This username has already been used");
+            }
             $this->username = $username;
             return $this;
         }
@@ -30,7 +38,9 @@
             if(empty($email)){
                 throw new Exception("Email cannot be empty.");
             }
-            
+            if(strpos($email, '@student.thomasmore.be') === false && strpos($email, '@thomasmore.be') === false ) {
+                throw new Exception("Use your Thomas More email adress");
+            }
             $this->email = $email;
             return $this;
         }
@@ -72,9 +82,7 @@
         }
 
         public function save(){
-            if(strpos($this->email, '@student.thomasmore.be') === false && strpos($this->email, '@thomasmore.be') === false ) {
-                throw new Exception("Use your Thomas More email adress");
-            }
+            include_once(__DIR__."/../classes/Db.php");
             $conn = Db::getConnection();
             $statement=$conn->prepare("select * from users where email=:email");
             $statement->bindValue(":email", $this->email);

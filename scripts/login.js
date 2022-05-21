@@ -10,6 +10,11 @@ document.querySelector("#username-input").addEventListener('input', function(eve
     .then(response => response.json())
     .then(result => {
         if(result.body === true){
+            var existingError = document.querySelector(".usernameError");
+            if(existingError){
+                console.log("exists")
+                existingError.remove();
+            }
             document.getElementById('username-input').style.marginBottom='0px';
             let usernameError = document.createElement('p');
             usernameError.classList.add("usernameError");
@@ -40,6 +45,11 @@ document.querySelector("#email-input").addEventListener("input", function(event)
     .then(response => response.json())
     .then(result => {
         if(result.body === true){
+            var existingError = document.querySelector(".emailError");
+            if(existingError){
+                console.log("exists")
+                existingError.remove();
+            }
             document.getElementById('email-input').style.marginBottom='0px';
             let emailError = document.createElement('p');
             emailError.classList.add("emailError");
