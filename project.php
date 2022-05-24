@@ -18,6 +18,8 @@
         header("Location: project.php?p=".$id);
     }
 
+    $totalLikes = Like::CountLikes($_GET['p']);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +47,7 @@
                             <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
                         </div>
                         <div class="actions">
-                            <a href="" class="postAction" id="like">like</a>
+                            <a href="" class="postAction" id="like" data-id="<?php echo $project['id'] ?>" data-user="<?php echo $project['user_id'] ?>"><?php echo $totalLikes; ?> like</a>
                             <a href="" class="postAction" id="comment">comment</a>
                             <a href="" class="postAction" id="save">save</a>
                         </div>
@@ -87,5 +89,6 @@
         </div>
     </div>
     <script src="./scripts/comments.js"></script>
+    <script src="./scripts/like.js"></script>
 </body>
 </html>

@@ -246,15 +246,15 @@ input{
 }
 
 #like{
-    background-image: url("/icons/like.png");
+    /* background-image: url("/icons/like.png"); */
 }
 
 #comment{
-    background-image: url("/icons/comment.png");
+    /* background-image: url("/icons/comment.png"); */
 }
 
 #save{
-    background-image: url("/icons/save.png");
+    /* background-image: url("/icons/save.png"); */
 }
 
 .detailsText{
