@@ -6,8 +6,6 @@
     $user = User::getUserById($_GET['u']);
 
     $projects = Project::getProjectsByUserId($_GET['u']);
-    $project_id = 1;
-    $images = Project::getAllImagesOfProject($project_id);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -22,6 +20,7 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
+    <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Back</a>
     
     <div class="profileDetails">
         <div class="avatar">
@@ -57,11 +56,11 @@
     </div>
     
     <div class="feed">
-        <?php foreach($projects as $project): ?>
+        <?php foreach($projects as $project): $images = Project::getAllImagesOfProject($project['id']);?>
             <div class="project profileProject" >
                 <div class="projectImageContainer">
                     <?php foreach($images as $image): ?>
-                        <img src="<?php echo 'avatars/'.$image['fileName']; ?>" alt="Picture of project">
+                        <img src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
                     <?php endforeach; ?>
                 </div>
                 <h3><?php echo $project['title'] ?></h3>
@@ -69,6 +68,31 @@
             </div>
         <?php endforeach; ?>
     </div>
+    
+    <div>
+        <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
+    </div>
+
+     <!--modal section -->
+     <div class="bg-popup">
+       <div class="modal-content2">
+       <div class="close" >+</div>
+       
+       <h1>You are reporting a user</h1>
+       <h2>Why are you reporting this user?</h2>
+       
+     <form name= "report" id="report">
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Scammer">Scammer</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Bullying">Bullying</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Pretends to be someone else">Pretends to be someone else</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Not a student/teacher">Not a student/teacher</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate language">inapropriate language</p>
+        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate content">inapropriate content</p>
+        
+        <input class="report-btn" name="reportuser" type="submit" value="REPORT USER">
+     </form>
+
     <script src="./scripts/follow.js"></script>
+    <script src="scripts/reportuser.js"></script>
 </body>
 </html>

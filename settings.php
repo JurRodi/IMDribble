@@ -4,6 +4,8 @@
     $user = User::getUserByEmail($_SESSION['email']);
     include_once(__DIR__. "/upload.php");
     $user = User::getUserByEmail($_SESSION['email']);
+    $error;
+    include_once(__DIR__. "/changepassword.php");
 
     if(isset($_POST['save'])){
         try{
@@ -21,10 +23,8 @@
         catch(Throwable $e){
             $error = $e->getMessage();
         }
-
-
-        //Modal section changepassword
     }
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -87,23 +87,23 @@
        <div class="modal-content">
        <div class="close" >+</div>
        
-       <form  method="POST" action="settings.php">
+       <form  method="POST" action="">
        
         <h1>Change password</h1>
         <h2>Choose a new password!</h2>
         <div class="pw-details" >
             <label for="password">Old password</label>
-            <input type="text" name="oldPwd" placeholder="Old password" >
+            <input class="input-cp" type="password" name="oldPwd" placeholder="Old password" required>
         </div>
         <div class="pw-details" >
             <label for="password">New password</label>
-            <input type="text" name="newPwd" placeholder="New password">
+            <input class="input-cp" type="password" name="newPwd" placeholder="New password" required>
             </div>
         <div class="pw-details" >
             <label for="password">Confirm new password</label>
-            <input type="text" name="confirmPwd" placeholder="Confirm new password">
+            <input class="input-cp" type="password" name="confirmPwd" placeholder="Confirm new password" required>
         </div>
-        <input class="button" name="ChangePassword" type="submit" value="ChangePassword">
+        <input class="cp-btn" name="ChangePassword" type="submit" value="ChangePassword">
             
         </form>
        
