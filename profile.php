@@ -6,8 +6,6 @@
     $user = User::getUserByEmail($_SESSION['email']);
 
     $projects = Project::getProjectsByUserId($user['id']);
-    $project_id = 1;
-    $images = Project::getAllImagesOfProject($project_id);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -47,7 +45,7 @@
     </div>
 
     <div class="feed">
-        <?php foreach($projects as $project): ?>
+        <?php foreach($projects as $project): $images = Project::getAllImagesOfProject($project['id']); ?>
             <div class="project profileProject" >
                 <div class="projectImageContainer">
                     <?php foreach($images as $image): ?>
