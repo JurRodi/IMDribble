@@ -340,6 +340,114 @@ input{
 .btn:hover{
     background-color: blue;
 }
+/*modal*/
+
+.bg-popup{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    
+}
+
+.modal-content{
+    width: 400px;
+    height: 700px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+   
+}
+
+.modal-content h1{
+    font-size: 45px;
+    margin-top: 10%;
+}
+ .pw-details{
+     margin-bottom: 10%;
+ }
+ .input-cp{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius:8px;
+    border: 1px solid #c4c4c4;
+    margin-bottom: 1.25rem;
+    font-size: 25px;
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    margin-left: 85%;
+}
+
+.cp-btn{
+    display: block;
+    width: 60%;
+    margin-left: 20%;
+    color: rgb(0, 0, 0);
+    background-color: greenyellow;
+    font-weight: 1000;
+    margin-top: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.cp-btn:hover{
+    background-color: blue;
+    color: white;
+}
+/*report users*/
+.modal-content2{
+    width: 400px;
+    height: 700px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+}
+
+.options{
+    height: 30px;
+    font-size: 25px;
+    
+}
+
+#report{
+    height: 300px;
+}
+
+.multi-choice{
+    height: 20px;
+    width: 20px;
+    margin-right: 5%;  
+}
+
+.report-btn{
+    margin-top: 15%;
+    background-color: greenyellow;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.report-btn:hover{
+    background-color: blue;
+    color: white;
+}
 
 @media (min-width: 900px){
 

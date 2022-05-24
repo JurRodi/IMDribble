@@ -187,23 +187,23 @@
         }
 
 
-        //update projects
-        public static function updateProject(){
+      
+
+        //alternative timeline
+        public static function getAmount($limit, $offset) {
                 $conn = Db::getConnection();
-                // $statementTitle = $conn->prepare("UPDATE title from projects where project_id = :id") ;
-                // $statementTeaser = $conn->prepare("UPDATE teaser from projects where project_id = :id") ;
-                // $statementDescription = $conn->prepare("UPDATE description from projects where project_id = :id") ;
+                $statement = $conn->prepare("select * from projects order by user_id desc limit $limit offset $offset");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
 
-                // of op deze manier?
-                $statement=$conn->prepare("UPDATE projects set titel = :titel, teaser = :teaser, description = :description where project_id = :id");
-
-
-                //title verkeerd gescreven!
-
-                // $statement->bindValue(":titel", $this->titel);
-                // $statement->bindValue(":teaser", $this->teaser);
-                // $statement->bindValue(":description", $this->description);
-                // return $statement->execute();
+        public static function getAmountPer($limit, $offset) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects order by timestamp desc limit $limit offset $offset");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
         }
     }
 ?>

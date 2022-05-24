@@ -29,8 +29,11 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-
+    <div>
+    <a href="#" id="reportitem" class="reportitem" >Report item</a> </br>
+    </div>
     <div class="feed">
+    
         <div class="project" >
                 <div class="projectImageContainer">
                 <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
@@ -84,7 +87,29 @@
                     <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
                 <?php endif; ?>
         </div>
+    
     </div>
+    <!--modal section -->
+    <div class="bg-popup">
+       <div class="modal-content2">
+       <div class="close" >+</div>
+       
+       <h1>You are reporting a user</h1>
+       
+     <form name= "report" id="report">
+        <label for="reportSelect">Why are you reporting this user?</label>
+        <select id="reportSelect">
+            <option value="Scammer">Scammer</option>
+            <option value="Bullying">Bullying</option>
+            <option value="Pretends to be someone else">Pretends to be someone else</option>
+            <option value="Not a student/teacher">Not a student/teacher</option>
+            <option value="inapropriate language">inapropriate language</option>
+            <option value="inapropriate content">inapropriate content</option>
+        </select>
+        <input class="report-btn" name="reportuser" type="submit" value="REPORT USER" data-reportuser_id="<?php echo $project['user_id'] ?>" data-project_id="<?php echo $_GET['p'] ?>">
+     </form>
+
+   <script src="scripts/reportitem.js"></script>
     <script src="./scripts/comments.js"></script>
 </body>
 </html>
