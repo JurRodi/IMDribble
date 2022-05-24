@@ -408,6 +408,21 @@ input{
     background-color: blue;
 }
 
+.followBtn{
+    background-color: #1D1AFF;
+    padding: 5px 35px ;
+    border-radius: 5px;
+    color: white;
+}
+
+.unfollowBtn{
+    border: #1D1AFF solid 2px;
+    padding: 3px 25px ;
+    border-radius: 5px;
+
+    color:#1D1AFF;
+}
+
 @media (min-width: 900px){
 
 
