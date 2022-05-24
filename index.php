@@ -74,15 +74,17 @@
                 </div>
                 <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>
                     <div class="firstDetails">
-                        <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
-                        <div class="details">
-                            <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a></h4>
-                            <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
+                        <div class="img-details">
+                            <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
+                            <div class="details">
+                                <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a></h4>
+                                <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
+                            </div>
                         </div>
                         <div class="actions">
-                            <a href="" class="postAction" id="like">like</a>
-                            <a href="" class="postAction" id="comment">comment</a>
-                            <a href="" class="postAction" id="save">save</a>
+                            <a href="project.php?p=<?php echo $project['id'] ?>" class="postAction" id="like">like</a>
+                            <a href="project.php?p=<?php echo $project['id'] ?>" class="postAction" id="comment">comment</a>
+                            <a href="project.php?p=<?php echo $project['id'] ?>" class="postAction" id="save">save</a>
                         </div>
                     </div>
                 <?php endif; ?>

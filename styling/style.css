@@ -227,6 +227,12 @@ input{
     width: 100%;
     height: 80px;
     display: flex;
+    justify-content: space-between;
+}
+
+.img-details{
+    display: flex;
+    flex-direction: row;
 }
 
 .details{

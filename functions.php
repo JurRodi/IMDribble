@@ -14,6 +14,8 @@
             $displayedTime = $timeDiff->h . " hours ago";
         }elseif($timeDiff->i > 0){
             $displayedTime = $timeDiff->i . " minutes ago";
+        }else{
+            $displayedTime = "Just now";
         }
         return $displayedTime;
     }    
