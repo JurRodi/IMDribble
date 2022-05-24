@@ -24,7 +24,7 @@
     
     <div class="profileDetails">
         <div class="avatar">
-            <img src="<?php echo 'avatars/'.$user['avatar']; ?>" alt="avatar">
+            <img class="avatar-profile" src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
         </div>
         <div class="userData">
             <h3><?php echo $user['username']; ?></h3>
@@ -60,7 +60,7 @@
             <div class="project profileProject" >
                 <div class="projectImageContainer">
                     <?php foreach($images as $image): ?>
-                        <img src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
+                        <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
                     <?php endforeach; ?>
                 </div>
                 <h3><?php echo $project['title'] ?></h3>
