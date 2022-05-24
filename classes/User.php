@@ -19,6 +19,14 @@
             if(empty($username)){
                 throw new Exception("Username cannot be empty.");
             }
+            $conn = Db::getConnection();
+            $statement=$conn->prepare("select * from users where username=:username");
+            $statement->bindValue(":username", $username);
+            $statement->execute();
+            $existingUser = $statement->fetch();
+            if($existingUser){
+                throw new Exception("This username has already been used");
+            }
             $this->username = $username;
             return $this;
         }
@@ -30,7 +38,9 @@
             if(empty($email)){
                 throw new Exception("Email cannot be empty.");
             }
-            
+            if(strpos($email, '@student.thomasmore.be') === false && strpos($email, '@thomasmore.be') === false ) {
+                throw new Exception("Use your Thomas More email adress");
+            }
             $this->email = $email;
             return $this;
         }
@@ -40,16 +50,12 @@
                 return $this->email2;
         }
 
-        /**
-         * Set the value of email2
-         *
-         * @return  self
-         */ 
-        public function setEmail2($email2)
-        {
-                $this->email2 = $email2;
-
-                return $this;
+        public function setEmail2($email2){
+            if(strpos($email2, '@') === false && strpos($email2, '.') === false ) {
+                throw new Exception("Use a valid second email adress");
+            }
+            $this->email2 = $email2;
+            return $this;
         }
 
         public function getPassword(){
@@ -76,9 +82,7 @@
         }
 
         public function save(){
-            if(strpos($this->email, '@student.thomasmore.be') === false && strpos($this->email, '@thomasmore.be') === false ) {
-                throw new Exception("Use your Thomas More email adress");
-            }
+            include_once(__DIR__."/../classes/Db.php");
             $conn = Db::getConnection();
             $statement=$conn->prepare("select * from users where email=:email");
             $statement->bindValue(":email", $this->email);
@@ -189,6 +193,19 @@
                 return false;
             }
         }
+        public static function getExistingEmail($email) {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("select * from users where email = :email;");
+            $statement->bindValue(':email', $email);
+            $statement->execute();
+            $existingEmail = $statement->fetch();
+            if($existingEmail){
+                return true;
+            }
+            else{
+                return false;
+            }
+    }
 
         /**
          * Get the value of education
@@ -225,9 +242,11 @@
          */ 
         public function setInstagram($instagram)
         {
-                $this->instagram = $instagram;
-
-                return $this;
+            if (filter_var($instagram, FILTER_VALIDATE_URL) === FALSE) {
+                throw new Exception("The link to your instagram account is not a valid url.");
+            }
+            $this->instagram = $instagram;
+            return $this;
         }
 
         /**
@@ -245,18 +264,20 @@
          */ 
         public function setLinkedin($linkedin)
         {
-                $this->linkedin = $linkedin;
-
-                return $this;
+            if (filter_var($linkedin, FILTER_VALIDATE_URL) === FALSE) {
+                throw new Exception("The link to your linkedin account is not a valid url.");
+            }
+            $this->linkedin = $linkedin;
+            return $this;
         }
 
         public function updateProfile(){
             $conn = Db::getConnection();
             $statement=$conn->prepare("update users set bio = :bio, education = :education, email2 = :email2, instagram = :instagram, linkedin = :linkedin where email = :email");
-            $statement->bindValue(":bio", $this->bio);
             $statement->bindValue(":email", $this->email);
-            $statement->bindValue(":email2", $this->email2);
+            $statement->bindValue(":bio", $this->bio);
             $statement->bindValue(":education", $this->education);
+            $statement->bindValue(":email2", $this->email2);
             $statement->bindValue(":instagram", $this->instagram);
             $statement->bindValue(":linkedin", $this->linkedin);
             return $statement->execute();

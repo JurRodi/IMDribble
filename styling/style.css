@@ -306,6 +306,30 @@ input{
     background-color: #1D1AFF;
 }
 
+.successMessage{
+    position: absolute;
+    background-color: #BFFD00;
+    width: 50%;
+    top: 25%;
+    left: 25%;
+    border-radius: 10px;
+    padding: 3% 3% 12% 3%;
+}
+
+.successMessage > *{
+    text-align: center;
+}
+
+.successMessage span{
+    position: absolute;
+    top: 60%;
+    left: 40%;
+}
+
+.dissapear{
+    display: none;
+}
+
 .profileDetails{
     padding: 50px 0 40px 0;
     border-bottom: 2px solid rgb(188, 188, 188);
@@ -478,6 +502,14 @@ input{
 }
 #settingsForm{
     max-width: 40%;
+}
+.successMessage span{
+    position: absolute;
+    top: 55%;
+    left: 45%;
+}
+.successMessage{
+    padding: 3%;
 }
 
 }
