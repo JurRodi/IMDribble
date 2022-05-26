@@ -51,8 +51,8 @@
               </div>
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
-            <a class="link1"  href="register.php">Go to registration</a>
-            
+            <a class="link1" href="register.php">Go to registration</a>
+            <a class="link3" href="requestPassword.php">Forgot your password?</a>
             </form>
     </div>
     </div>

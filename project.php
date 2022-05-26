@@ -28,7 +28,7 @@
         <div class="project" >
                 <div class="projectImageContainer">
                 <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
-                    <a href="project.php"><img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project"></a>
+                    <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
                 <?php endforeach; ?>
                 </div>
                 <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>

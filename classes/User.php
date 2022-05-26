@@ -62,8 +62,8 @@
             return $this->password;
         }
         public function setPassword($password){
-            if(strlen($password)<=6){
-                throw new Exception("Your password has to be at least 7 characters long");
+            if(strlen($password) < 6){
+                throw new Exception("Your password has to be at least 6 characters long");
             }
             $this->password = $password;
             return $this;
