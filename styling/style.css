@@ -257,6 +257,10 @@ input{
     /* background-image: url("/icons/save.png"); */
 }
 
+.liked{
+    color: rgb(221, 32, 205);
+}
+
 .detailsText{
     margin: 5px 0px 0px 10px;
 }

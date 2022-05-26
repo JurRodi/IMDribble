@@ -47,7 +47,7 @@
                             <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
                         </div>
                         <div class="actions">
-                            <a href="" class="postAction" id="like" data-id="<?php echo $project['id'] ?>" data-user="<?php echo $project['user_id'] ?>"><?php echo $totalLikes; ?> like</a>
+                            <a href="" class="postAction <?php if(Like::isLiked($_GET['p'], $user['id'])){ echo 'liked'; } ?>" id="like" data-id="<?php echo $project['id'] ?>" data-user="<?php echo $project['user_id'] ?>"><?php echo $totalLikes; ?> likes</a>
                             <a href="" class="postAction" id="comment">comment</a>
                             <a href="" class="postAction" id="save">save</a>
                         </div>

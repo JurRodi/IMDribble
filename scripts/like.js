@@ -17,10 +17,8 @@ function like(e){
         body: data,
     })
     .then(response => response.json())
-    .then(console.log(data))
     .then(data => {
         like.innerHTML = data['totallikes'] + " likes";
-        like.style.color="rgb(221, 32, 205)";
         // console.log('Success:', data, "liked");
         
     })
