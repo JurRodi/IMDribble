@@ -10,14 +10,6 @@
     }
     
     $project = Project::getProjectById($_GET['p']);
-
-    if(isset($_POST['search']) && !empty($_POST['searchbalk'])){
-        $search = $_POST['searchbalk'];
-        $searched_project = Project::getProjectbyTitle($search);
-        $id = $searched_project['id'];
-        header("Location: project.php?p=".$id);
-    }
-
     $totalLikes = Like::CountLikes($_GET['p']);
 
 ?><!DOCTYPE html>

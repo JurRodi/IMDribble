@@ -16,10 +16,15 @@
                 if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
                     if(isset($_POST['title'])){
                         $user_id = $user['id'];
-                        $project_id = Project::addProject($user_id);
-                        uploadImage($fileName, $project_id);
-                        $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
-                        header("Loacation: index.php");
+                        if($project_id){
+                            changeImage($fileName, $project_id);
+                            $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                        }else{
+                            $project_id = Project::addProject($user_id);
+                            uploadImage($fileName, $project_id);
+                            $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                            header("Loacation: index.php");
+                        }
                     }elseif(!isset($_POST['title'])){
                         avatarQuery($fileName, $user['id']);
                         $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
@@ -49,6 +54,15 @@
     function uploadImage($fileName, $project_id){
         $conn = Db::getConnection();
         $insert = $conn->prepare("INSERT INTO images (fileName, project_id) VALUES (:fileName, :project_id)");
+        $insert->bindValue(':fileName', $fileName);
+        $insert->bindValue(':project_id', $project_id);
+        $insert->execute();
+        return true;
+    }
+
+    function changeImage($fileName, $project_id){
+        $conn = Db::getConnection();
+        $insert = $conn->prepare("UPDATE images SET fileName = :fileName WHERE project_id = :project_id");
         $insert->bindValue(':fileName', $fileName);
         $insert->bindValue(':project_id', $project_id);
         $insert->execute();

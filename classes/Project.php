@@ -186,24 +186,22 @@
                 return $statementProject->execute();
         }
 
-
-        //update projects
-        public static function updateProject(){
+        public static function updateProject($project_id, $title, $teaser, $description, $tags){
                 $conn = Db::getConnection();
-                // $statementTitle = $conn->prepare("UPDATE title from projects where project_id = :id") ;
-                // $statementTeaser = $conn->prepare("UPDATE teaser from projects where project_id = :id") ;
-                // $statementDescription = $conn->prepare("UPDATE description from projects where project_id = :id") ;
-
-                // of op deze manier?
-                $statement=$conn->prepare("UPDATE projects set titel = :titel, teaser = :teaser, description = :description where project_id = :id");
-
-
-                //title verkeerd gescreven!
-
-                // $statement->bindValue(":titel", $this->titel);
-                // $statement->bindValue(":teaser", $this->teaser);
-                // $statement->bindValue(":description", $this->description);
-                // return $statement->execute();
+                $statement = $conn->prepare("UPDATE projects set title = :title, teaser = :teaser, description = :description where id = :project_id");
+                $statement->bindValue(":title", $title);
+                $statement->bindValue(":teaser", $teaser);
+                $statement->bindValue(":description", $description);
+                $statement->bindValue(":project_id", $project_id);
+                $statement->execute();
+                $stmt = $conn->query("DELETE from project_tag where project_id = $project_id");
+                foreach ($tags as $tag){
+                        $stmt = $conn->prepare("INSERT INTO project_tag (project_id, tag_id) VALUES (:project_id, :tag_id)");
+                        $stmt->bindValue(':project_id', $project_id);
+                        $stmt->bindValue(':tag_id', $tag);
+                        $stmt->execute();
+                }
+                return $project_id;
         }
     }
 ?>
