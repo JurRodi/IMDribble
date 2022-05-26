@@ -104,8 +104,8 @@
         <input class="report-btn" name="reportuser" type="submit" value="REPORT USER" data-reportuser_id="<?php echo $project['user_id'] ?>" data-project_id="<?php echo $_GET['p'] ?>">
      </form>
 
-   <script src="scripts/reportitem.js"></script>
-    <script src="./scripts/comments.js"></script>
-    <script src="./scripts/like.js"></script>
+   <script src="/scripts/reportitem.js"></script>
+    <script src="/scripts/comments.js"></script>
+    <script src="/scripts/like.js"></script>
 </body>
 </html>
