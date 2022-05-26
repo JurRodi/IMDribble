@@ -203,5 +203,13 @@
                 }
                 return $project_id;
         }
+
+        public static function getShowcase(){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects where showcase = 1");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
     }
 ?>

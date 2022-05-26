@@ -31,30 +31,33 @@
         <?php endif; ?>
     <?php endif; ?>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <div class="profileDetails">
-        <div class="avatar">
-            <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+    <div class="profile">
+        <div class="profileDetails">
+            <div class="avatar">
+                <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+            </div>
+            <div class="userData">
+                <h3><?php echo $user['username']; ?></h3>
+                <?php if (!empty($user['education'])): ?>
+                    <p>Student: <?php echo $user['education']; ?></p>
+                <?php endif; ?>
+                <?php if (!empty($user['bio'])): ?>
+                    <p><?php echo $user['bio']; ?></p>
+                <?php endif; ?>
+                <?php if (!empty($user['instagram'])): ?>
+                    <a href="<?php echo $user['instagram']; ?>" ><div id="instagram"></div></a>
+                <?php endif; ?>
+                <?php if (!empty($user['linkedin'])): ?>
+                    <a href="<?php echo $user['linkedin']; ?>" ><div id="linkedin"></div></a>
+                <?php endif; ?>
+            </div>
+            <a href="settings.php" class="settingIcon">
+                <span href="settings.php" class="material-symbols-outlined">settings</span>
+            </a>
         </div>
-        <div class="userData">
-            <h3><?php echo $user['username']; ?></h3>
-            <?php if (!empty($user['education'])): ?>
-                <p>Student: <?php echo $user['education']; ?></p>
-            <?php endif; ?>
-            <?php if (!empty($user['bio'])): ?>
-                <p><?php echo $user['bio']; ?></p>
-            <?php endif; ?>
-            <?php if (!empty($user['instagram'])): ?>
-                <a href="<?php echo $user['instagram']; ?>" ><div id="instagram"></div></a>
-            <?php endif; ?>
-            <?php if (!empty($user['linkedin'])): ?>
-                <a href="<?php echo $user['linkedin']; ?>" ><div id="linkedin"></div></a>
-            <?php endif; ?>
-        </div>
-        <a href="settings.php" class="settingIcon">
-            <span href="settings.php" class="material-symbols-outlined">settings</span>
-        </a>
+        <div class="showcase"><a id="showcase" href="">Share your showcase</a></div>
     </div>
-
+    
     <div class="feed">
         <?php foreach($projects as $project): $images = Project::getAllImagesOfProject($project['id']); ?>
             <div class="project profileProject" >
@@ -69,5 +72,6 @@
         <?php endforeach; ?>
     </div>
     <script src="./scripts/succesMessage.js"></script>
+    <script src="./scripts/shareSchowcase.js"></script>
 </body>
 </html>
