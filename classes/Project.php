@@ -77,6 +77,14 @@
                 return $projects;
         }
 
+        public static function getProjectsByFollowing($limit, $offset, $user) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * FROM projects WHERE EXISTS ( SELECT * FROM follow WHERE follow.user1 = $user and follow.user2 = projects.user_id ) order by timestamp desc limit $limit offset $offset");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
+
         public static function countAll() {
                 $conn = Db::getConnection();
                 $statement = $conn->prepare("select count(id) as total from projects");
@@ -227,5 +235,7 @@
                 $projects = $statement->fetchAll();
                 return $projects;
         }
+
+
     }
 ?>

@@ -22,8 +22,22 @@
         $total = Project::countAllByTags($searched_tag['id']);
         $total_pages = ceil($total[0]['total'] / $limit);
         $active = $_GET['tags'];
-    } else{
-        $projects = Project::getAmountPerPage($limit, $offset);
+    } else{ 
+        if(isset($_GET['timeline'])){
+            $timeline = $_GET['timeline'];
+            
+            if($timeline ==="feed"){
+                $projects = Project::getAmountPerPage($limit, $offset);
+            }
+            if($timeline ==="following"){
+                $projects = Project::getProjectsByFollowing($limit, $offset, $user['id']);
+            }
+            
+        }
+        else{
+            $projects = Project::getAmountPerPage($limit, $offset);
+        }
+        
         $total = Project::countAll();
         $total_pages = ceil($total[0]['total'] / $limit);
     }
@@ -48,10 +62,11 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <!-- <div class="alt-timeline">
-    <a href="" class="nav-link link-active">
-    </div> -->
-    
+    <div id="line"></div>
+ 
+    <a href="<?php echo "?timeline=feed" ?>">Feed</a>
+    <a href="<?php echo "?timeline=following" ?>">Following</a>
+
     <div class="search-filter">
         <form action="" method="POST" class="search-form">
             <input type="text" name="searchbalk" placeholder="Search">
@@ -63,11 +78,6 @@
                 <a class="filter <?php if($active === $tag['name']){ echo "active-filter";} ?>" href="?tags=<?php echo $tag['name'] ?>"> <?php echo '#'.$tag['name'] ?></a>
             <?php endforeach; ?>
         </div>
-    </div>
-
-    <div class="alt-timeline">
-    <a href="#">All</a>
-    <a href="#">Following </a>
     </div>
 
     <div class="feed">
