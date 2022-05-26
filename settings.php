@@ -108,7 +108,7 @@
         </form>
        
    </div>
-   <script src="changepassword.js"></script>
+   <script src="scripts/changepassword.js"></script>
 </body>
 </html>
 
