@@ -53,7 +53,7 @@
     </div> -->
     
     <div class="search-filter">
-        <form action="" method="POST">
+        <form action="" method="POST" class="search-form">
             <input type="text" name="searchbalk" placeholder="Search">
             <input type="submit" name="search" value="Search">
         </form>
