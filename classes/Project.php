@@ -211,5 +211,21 @@
                 $projects = $statement->fetchAll();
                 return $projects;
         }
+      
+        public static function getAmount($limit, $offset) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects order by user_id desc limit $limit offset $offset");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
+
+        public static function getAmountPer($limit, $offset) {
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects order by timestamp desc limit $limit offset $offset");
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
     }
 ?>

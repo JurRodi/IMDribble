@@ -64,6 +64,12 @@
             <?php endforeach; ?>
         </div>
     </div>
+
+    <div class="alt-timeline">
+    <a href="#">All</a>
+    <a href="#">Following </a>
+    </div>
+
     <div class="feed">
     <?php foreach($projects as $project): ?>
         <div class="project" >
@@ -99,6 +105,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
+    
         </div>
         <?php endforeach; ?>
     </div>

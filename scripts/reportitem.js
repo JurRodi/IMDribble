@@ -1,4 +1,4 @@
-document.querySelector('#reportuser').addEventListener('click',
+document.querySelector('#reportitem').addEventListener('click',
 function(){ console.log("click")
     document.querySelector('.bg-popup').style.display = 'flex';
 });
@@ -14,8 +14,8 @@ function(event){
     event.preventDefault();
     console.log("click")
 
-    let reportuser_id = this.dataset.reportuser_id;
-    let project_id = null;
+    let reportuser_id = this.dataset.reportuser_id;;
+    let project_id = this.dataset.project_id;
     let complaint = document.querySelector("#reportSelect").value;
 
     // console.log(reportuser_id)

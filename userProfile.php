@@ -53,6 +53,9 @@
         <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>" class="closeIcon">
             <span class="material-symbols-outlined">close</span>
         </a>
+        <div>
+    <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
+    </div>
     </div>
     
     <div class="feed">
@@ -68,6 +71,8 @@
             </div>
         <?php endforeach; ?>
     </div>
+   
+
     
     <div>
         <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
@@ -78,21 +83,24 @@
        <div class="modal-content2">
        <div class="close" >+</div>
        
-       <h1>You are reporting a user</h1>
-       <h2>Why are you reporting this user?</h2>
+       <h1>You are reporting a user/item</h1>
+       <h2>Why are you reporting this user/item?</h2>
        
      <form name= "report" id="report">
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Scammer">Scammer</p>
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Bullying">Bullying</p>
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Pretends to be someone else">Pretends to be someone else</p>
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="Not a student/teacher">Not a student/teacher</p>
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate language">inapropriate language</p>
-        <p class="options"><input class="multi-choice" type="radio" name="answer" value="inapropriate content">inapropriate content</p>
-        
-        <input class="report-btn" name="reportuser" type="submit" value="REPORT USER">
+        <label for="reportSelect">Why are you reporting this user?</label>
+        <select id="reportSelect">
+            <option value="Scammer">Scammer</option>
+            <option value="Bullying">Bullying</option>
+            <option value="Pretends to be someone else">Pretends to be someone else</option>
+            <option value="Not a student/teacher">Not a student/teacher</option>
+            <option value="inapropriate language">inapropriate language</option>
+            <option value="inapropriate content">inapropriate content</option>
+        </select>
+        <input class="report-btn" name="reportuser" type="submit" value="sendComplaint" data-reportuser_id="<?php echo $_GET['u'] ?>" >
+      
      </form>
 
-    <script src="./scripts/follow.js"></script>
+    <script src="scripts/follow.js"></script>
     <script src="scripts/reportuser.js"></script>
 </body>
 </html>
