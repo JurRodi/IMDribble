@@ -12,11 +12,21 @@
             $updatedUser = new User();
             $updatedUser->getUserByEmail($_SESSION['email']);
             $updatedUser->setEmail($user["email"]);
-            $updatedUser->setEmail2($_POST["email2"]);
-            $updatedUser->setBio($_POST["bio"]);
-            $updatedUser->setEducation($_POST["education"]);
-            $updatedUser->setInstagram($_POST["instagram"]);
-            $updatedUser->setLinkedin($_POST["linkedin"]);
+            if(!empty($_POST["email2"])){
+                $updatedUser->setEmail2($_POST["email2"]);
+            }
+            if(!empty($_POST["bio"])){
+                $updatedUser->setBio($_POST["bio"]);
+            }
+            if(!empty($_POST["education"])){
+                $updatedUser->setEducation($_POST["education"]);
+            }
+            if(!empty($_POST["instagram"])){
+                $updatedUser->setInstagram($_POST["instagram"]);
+            }
+            if(!empty($_POST["linkedin"])){
+                $updatedUser->setLinkedin($_POST["linkedin"]);
+            }
             $updatedUser->updateProfile();
             header("Location: profile.php?status=success");
         }

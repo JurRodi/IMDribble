@@ -63,7 +63,7 @@
             <div class="project profileProject" >
                 <div class="projectImageContainer">
                     <?php foreach($images as $image): ?>
-                        <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
+                        <a href="project.php?p=<?php echo $project['id'] ?>"><img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project"></a>
                     <?php endforeach; ?>
                 </div>
                 <h3><?php echo $project['title'] ?></h3>

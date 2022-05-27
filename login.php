@@ -24,6 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDribble</title>
+    <style><?php include 'styling/style.css'; ?></style>
     <link rel="stylesheet" href="styling/style.css">
 </head>
 <body>
@@ -39,16 +40,20 @@
                 <h1>Login</h1>
                 <h2>Welcome back!</h2>
             </section>
+            
             <div class="userdetails"> 
               <div class="input-box">
                 <label for="email">Email</label>
                 <input class="login-input" type="text" name="email" placeholder="email" >
             </div>
             <div class="userdetails"> 
-              <div class="input-box">
+            <div class="input-box">
                 <label for="password">Password</label>
                 <input class="login-input" type="password" name="password" placeholder="password">
-              </div>
+            </div>
+            <?php if(isset($error)): ?>
+                <div class="error"><?php echo $error ?></div>
+            <?php endif; ?>
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
             <a class="link1" href="register.php">Go to registration</a>
@@ -56,8 +61,6 @@
             </form>
     </div>
     </div>
-    <?php if(isset($error)): ?>
-        <div><?php echo $error ?></div>
-    <?php endif; ?>
+    
 </body>
 </html>

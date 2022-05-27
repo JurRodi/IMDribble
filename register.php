@@ -29,6 +29,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDribble</title>
+    <style><?php include 'styling/style.css'; ?></style>
     <link rel="stylesheet" type="" href="styling/style.css">
 </head>
 <body>
@@ -61,17 +62,17 @@
                 <label for="password_conf">Repeat password</label>
                 <input class="login-input" type="password" name="password_conf" placeholder="password" autocomplete="on">
             </div>
+            <?php if(isset($error)): ?>
+                <div class="error"><?php echo $error ?></div>
+            <?php endif; ?>
             <input class="signup-btn" type="submit" value="Register">
-          </div> 
+            </div> 
                 <a class="link2" href="login.php">Go to log in</a>
             </form>
         
 
         </div>
     </div>
-    <?php if(isset($error)): ?>
-        <div><?php echo $error ?></div>
-    <?php endif; ?>
     <script src="./scripts/login.js"></script>
 </body>
 </html>
