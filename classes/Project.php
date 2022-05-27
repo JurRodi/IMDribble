@@ -212,6 +212,28 @@
                 return $project_id;
         }
 
+        public static function getShowcaseItem($id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("select * from projects where showcase = 1 and id = :id");
+                $statement->bindValue(":id", $id);
+                $statement->execute();
+                $projects = $statement->fetchAll();
+                return $projects;
+        }
+        public static function addToShowcase($id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("update projects set showcase = 1 where id = :id");
+                $statement->bindValue(":id", $id);
+               
+                return  $statement->execute();
+        }
+        public static function removeFromShowcase($id){
+                $conn = Db::getConnection();
+                $statement = $conn->prepare("update projects set showcase = 0 where id = :id");
+                $statement->bindValue(":id", $id);
+               
+                return  $statement->execute();
+        }
         public static function getShowcase(){
                 $conn = Db::getConnection();
                 $statement = $conn->prepare("select * from projects where showcase = 1");
