@@ -62,11 +62,12 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <div id="line"></div>
- 
-    <a href="<?php echo "?timeline=feed" ?>">Feed</a>
-    <a href="<?php echo "?timeline=following" ?>">Following</a>
-
+   
+ <div class="alt-timeline"> 
+    <a id="alt-feed" href="<?php echo "?timeline=feed" ?>">Feed</a>
+    <a>|</a>
+    <a id="alt-following" href="<?php echo "?timeline=following" ?>">Following</a>
+</div>
     <div class="search-filter">
         <form action="" method="POST" class="search-form">
             <input type="text" name="searchbalk" placeholder="Search">

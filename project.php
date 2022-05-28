@@ -20,15 +20,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDribble</title>
     <link rel="stylesheet" href="styling/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <div>
-    <a href="#" id="reportitem" class="reportitem" >Report item</a> </br>
-    </div>
+    
+    
+    <?php if($user['id'] !== $project['user_id']): ?>
+        <a href="#" id="reportitem" class="reportitem" >Report</a> </br>
+    <?php endif; ?>
+
+
+    <?php if($user['id'] === $project['user_id']): ?>
+                    <a class="editproject" href="editProject.php?p=<?php echo $project['id'] ?>">✏️</a>
+                    <a class="deleteproject" href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete</a>
+                    <div id="showcaseButton" data-project="<?php echo $project['id'] ?>" >
+                        
+                    
+                        <?php if(empty(Project::getShowcaseItem($project['id']))):  ?>    
+                            <a href="#"  class="showcaseInactive" data-project="<?php echo $project['id'] ?>">Add to showcase</a>
+                            
+                        <?php else:?>
+                            <a href="#" class="showcaseActive" data-project="<?php echo $project['id'] ?>">Remove from showcase</a>
+                        <?php endif ?> 
+                    </div>
+                <?php endif; ?>
     <div class="feed">
     
-        <div class="project" >
+    
+        <div class="project detail-project" >
+            <div >
                 <div class="projectImageContainer">
                 <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
                     <img class="projectImage" src="<?php echo 'images/'.$image['fileName']; ?>" alt="Picture of project">
@@ -59,7 +81,8 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="commentSection">
+            </div>
+            <div class="commentSection">
                     <div class="commentForm">
                         <input type="text" id="commentText" placeholder="Write a comment">
                         <a href="#" class="submitComment" data-postid="<?php echo $project['id'] ?>">Post comment</a>
@@ -71,26 +94,13 @@
                                 <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $commentUser['id'] ?>"><?php echo $commentUser['username'] ?> commented:</a></h4>
                                 <p><?php echo $comment['text'] ?></p>
                                 <?php if($_SESSION['email'] === $commentUser['email'] || $_SESSION['email'] === $commentUser['email2']): ?>
-                                <a href="#" class="deleteComment" data-commentid="<?php echo $comment['id'] ?>">delete comment</a>
+                                <a href="#" class="deleteComment" data-commentid="<?php echo $comment['id'] ?>">Delete</a>
                                 <?php endif ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                </div>
-                <?php if($user['id'] === $project['user_id']): ?>
-                    <a href="editProject.php?p=<?php echo $project['id'] ?>">Edit project</a>
-                    <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
-                    <div id="showcaseButton" data-project="<?php echo $project['id'] ?>" >
-                        
-                    
-                        <?php if(empty(Project::getShowcaseItem($project['id']))):  ?>    
-                            <a href="#"  class="showcaseInactive" data-project="<?php echo $project['id'] ?>">Add to showcase</a>
-                            
-                        <?php else:?>
-                            <a href="#" class="showcaseActive" data-project="<?php echo $project['id'] ?>">Remove from showcase</a>
-                        <?php endif ?> 
-                    </div>
-                <?php endif; ?>
+            </div>
+              
         </div>
     
     </div>

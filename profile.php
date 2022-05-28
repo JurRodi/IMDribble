@@ -34,7 +34,7 @@
     <div class="profile">
         <div class="profileDetails">
             <div class="avatar">
-                <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+                <img id="avatar-img" src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
             </div>
             <div class="userData">
                 <h3><?php echo $user['username']; ?></h3>
