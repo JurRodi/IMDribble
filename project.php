@@ -80,6 +80,16 @@
                 <?php if($user['id'] === $project['user_id']): ?>
                     <a href="editProject.php?p=<?php echo $project['id'] ?>">Edit project</a>
                     <a href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete project</a>
+                    <div id="showcaseButton" data-project="<?php echo $project['id'] ?>" >
+                        
+                    
+                        <?php if(empty(Project::getShowcaseItem($project['id']))):  ?>    
+                            <a href="#"  class="showcaseInactive" data-project="<?php echo $project['id'] ?>">Add to showcase</a>
+                            
+                        <?php else:?>
+                            <a href="#" class="showcaseActive" data-project="<?php echo $project['id'] ?>">Remove from showcase</a>
+                        <?php endif ?> 
+                    </div>
                 <?php endif; ?>
         </div>
     
@@ -104,8 +114,9 @@
         <input class="report-btn" name="reportuser" type="submit" value="REPORT USER" data-reportuser_id="<?php echo $project['user_id'] ?>" data-project_id="<?php echo $_GET['p'] ?>">
      </form>
 
-   <script src="/scripts/reportitem.js"></script>
-    <script src="/scripts/comments.js"></script>
-    <script src="/scripts/like.js"></script>
+   <script src="scripts/reportitem.js"></script>
+    <script src="scripts/comments.js"></script>
+    <script src="scripts/like.js"></script>
+    <script src="scripts/showcase.js"></script></script>
 </body>
 </html>
