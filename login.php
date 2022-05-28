@@ -31,7 +31,7 @@
     
     <div class="split-screen">
         <div class="left">
-            <img id="quote" src="images/quote.png" alt="quote">
+            <img id="quote" src="images/imdribble.png" alt="imdribble">
         </div>
 
         <div class="right">
@@ -44,7 +44,7 @@
             <div class="userdetails"> 
               <div class="input-box">
                 <label for="email">Email</label>
-                <input class="login-input" type="text" name="email" placeholder="email" >
+                <input class="login-input1" type="text" name="email" placeholder="email" >
             </div>
             <div class="userdetails"> 
             <div class="input-box">
@@ -54,6 +54,7 @@
             <?php if(isset($error)): ?>
                 <div class="error"><?php echo $error ?></div>
             <?php endif; ?>
+            </div>
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
             <a class="link1" href="register.php">Go to registration</a>

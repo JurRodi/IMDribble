@@ -50,7 +50,7 @@
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     <div id="settingsForm">
         <div class="avatar">
-            <img src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
+            <img id="avatar-img2" src="<?php echo 'images/'.$user['avatar']; ?>" alt="avatar">
         </div>
         <br>
         <?php if(!empty($statusMsg)): ?>
