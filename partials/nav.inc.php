@@ -1,6 +1,4 @@
-<link rel="stylesheet" type="" href="styling/style.css">
 <nav>
-
 <ul class="nav-mobile"> 
 <a href="index.php" class="nav-link link-active">
             <i class="material-icons nav-icon">home</i>
@@ -15,6 +13,7 @@
             <span class="nav-text">Profile</span>
         </a>
 </ul>
+</nav>
 
 <nav class="navbar">
     <a href="index.php"><img class="logo" src="images/logo.png" alt="Logo"> </a>
@@ -25,8 +24,7 @@
        
         <li><a href="profile.php">Profile</a></li>
     </ul>
-
-
+   
     <div>
         <?php if(!isset($_SESSION['email'])): ?>
             <a href="login.php">Log in</a>
