@@ -78,13 +78,13 @@
         <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
     </div>
 
-     <!--modal section -->
+     modal section
      <div class="bg-popup">
        <div class="modal-content2">
        <div class="close" >+</div>
        
-       <h1>You are reporting a user/item</h1>
-       <h2>Why are you reporting this user/item?</h2>
+       <h1>You are reporting a user</h1>
+       
        
      <form name= "report" id="report">
         <label for="reportSelect">Why are you reporting this user?</label>

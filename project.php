@@ -109,10 +109,10 @@
        <div class="modal-content2">
        <div class="close" >+</div>
        
-       <h1>You are reporting a user</h1>
+       <h1>You are reporting a project</h1>
        
      <form name= "report" id="report">
-        <label for="reportSelect">Why are you reporting this user?</label>
+        <label for="reportSelect">Why are you reporting this project?</label>
         <select id="reportSelect">
             <option value="Scammer">Scammer</option>
             <option value="Bullying">Bullying</option>
