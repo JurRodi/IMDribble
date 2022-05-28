@@ -20,7 +20,6 @@
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
-    <!-- <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Back</a> -->
     
     <div class="profileDetails">
         <div class="avatar">
@@ -70,12 +69,6 @@
                 <p><?php echo $project['teaser'] ?></p>
             </div>
         <?php endforeach; ?>
-    </div>
-   
-
-    
-    <div>
-        <a href="#" id="reportuser" class="reportuser" >Report user</a> </br>
     </div>
 
      <!--modal section -->
