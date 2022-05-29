@@ -1110,4 +1110,8 @@ input{
     .projectImage{
         height: 400px;
     }
+
+    .project{
+        margin-bottom: 150px;
+    }
 }
