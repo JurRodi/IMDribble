@@ -50,6 +50,7 @@
             <div class="input-box">
                 <label for="password">Password</label>
                 <input class="login-input" type="password" name="password" placeholder="password">
+                <a class="link3" href="requestPassword.php">Forgot your password?</a>
             </div>
             <?php if(isset($error)): ?>
                 <div class="error"><?php echo $error ?></div>
@@ -58,7 +59,7 @@
             <input class="signup-btn"  type="submit" value="Log in">
             </div>
             <a class="link1" href="register.php">Go to registration</a>
-            <a class="link3" href="requestPassword.php">Forgot your password?</a>
+            
             </form>
     </div>
     </div>
