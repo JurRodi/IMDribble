@@ -1148,4 +1148,12 @@ input{
         width: 90%;
         margin-left: 5%;
     }
+
+    .projectImageContainer{
+        height: 400px;
+    }
+
+    .projectImage{
+        height: 400px;
+    }
 }
