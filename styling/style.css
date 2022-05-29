@@ -547,6 +547,14 @@ input{
     background-color: #1D1AFF;
 }
 
+#tags-section{
+    display: flex;
+}
+
+#tags-section input{
+    height: 20px;
+}
+
 .successMessage{
     position: absolute;
     background-color: #BFFD00;
