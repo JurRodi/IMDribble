@@ -368,13 +368,21 @@ input{
     height: 150px;
     margin-bottom: 10px;
     margin-top: 5%;
-   display: flex;
-   justify-content: center;
-   background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    background-size: contain;
+    overflow: hidden;
 }
 
 .projectImage{
     height: 100%;
+    width: 100%;
+}
+
+.projectImageDetail{
+    /* height: 100%; */
+    
 }
 
 .avatar{
@@ -1107,7 +1115,6 @@ input{
 }
 
 .projectImageContainer{
-    height: 300px;
     margin-bottom: 10px;
 }
 
@@ -1161,6 +1168,5 @@ input{
 
     .projectImage{
         height: 400px;
-        background-size: contain;
     }
 }
