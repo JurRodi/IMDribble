@@ -26,30 +26,25 @@
 <body>
     <?php include_once(__DIR__ . "/partials/nav.inc.php"); ?>
     
-    
-    <?php if($user['id'] !== $project['user_id']): ?>
+    <?php if($user['id'] === $project['user_id']): ?>
+        <div class="project-actions">
+            <a class="editproject" href="editProject.php?p=<?php echo $project['id'] ?>">✏️</a>
+            <a class="deleteproject" href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete</a>
+            <div id="showcaseButton" data-project="<?php echo $project['id'] ?>" >          
+                <?php if(empty(Project::getShowcaseItem($project['id']))):  ?>    
+                    <a href="#"  class="showcaseInactive" data-project="<?php echo $project['id'] ?>">Add to showcase</a>
+                                    
+                <?php else:?>
+                    <a href="#" class="showcaseActive" data-project="<?php echo $project['id'] ?>">Remove from showcase</a>
+                <?php endif ?> 
+            </div>
+        </div>
+    <?php else: ?>
         <a href="#" id="reportitem" class="reportitem" >Report</a> </br>
     <?php endif; ?>
-
-
-    <?php if($user['id'] === $project['user_id']): ?>
-                    <a class="editproject" href="editProject.php?p=<?php echo $project['id'] ?>">✏️</a>
-                    <a class="deleteproject" href="deleteProject.php?p=<?php echo $project['id'] ?>">Delete</a>
-                    <div id="showcaseButton" data-project="<?php echo $project['id'] ?>" >
-                        
-                    
-                        <?php if(empty(Project::getShowcaseItem($project['id']))):  ?>    
-                            <a href="#"  class="showcaseInactive" data-project="<?php echo $project['id'] ?>">Add to showcase</a>
-                            
-                        <?php else:?>
-                            <a href="#" class="showcaseActive" data-project="<?php echo $project['id'] ?>">Remove from showcase</a>
-                        <?php endif ?> 
-                    </div>
-                <?php endif; ?>
     <div class="feed">
     
-    
-        <div class="project detail-project" >
+        <div class="detail-project" >
             <div >
                 <div class="projectImageContainer">
                 <?php foreach(Project::getAllImagesOfProject($project['id']) as $image): ?>
@@ -58,10 +53,12 @@
                 </div>
                 <?php if(isset($user)): $creator = Project::getUser($project['user_id']); ?>
                     <div class="firstDetails">
-                        <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
-                        <div class="details">
-                            <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a></h4>
-                            <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
+                        <div class="img-details">
+                            <img class="avatar" src="<?php echo 'images/'.$creator['avatar']; ?>" alt="avatar">
+                            <div class="details">
+                                <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $creator['id'] ?>"><?php echo $creator['username'] ?></a></h4>
+                                <p id="postTime" class="detailsText"><?php echo getTimeDiff($project['timestamp']); ?></p>
+                            </div>
                         </div>
                         <div class="actions">
                             <a href="" class="postAction <?php if(Like::isLiked($_GET['p'], $user['id'])){ echo 'liked'; } ?>" id="like" data-id="<?php echo $project['id'] ?>" data-user="<?php echo $project['user_id'] ?>"><?php echo $totalLikes; ?> likes</a>
@@ -109,10 +106,10 @@
        <div class="modal-content2">
        <div class="close" >+</div>
        
-       <h1>You are reporting a user</h1>
+       <h1>You are reporting a project</h1>
        
      <form name= "report" id="report">
-        <label for="reportSelect">Why are you reporting this user?</label>
+        <label for="reportSelect">Why are you reporting this project?</label>
         <select id="reportSelect">
             <option value="Scammer">Scammer</option>
             <option value="Bullying">Bullying</option>

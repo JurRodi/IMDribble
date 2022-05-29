@@ -365,7 +365,7 @@ input{
 }
 
 .projectImageContainer{
-    height: 300px;
+    height: 150px;
     width: 100%;
     margin-bottom: 10px;
     margin-top: 5%;
@@ -373,7 +373,7 @@ input{
 }
 
 .projectImage{
-    height: 300px;
+    height: 150px;
     width: 100%;
 }
 
@@ -852,6 +852,19 @@ input{
     bottom: 0;
 }
 
+.detail-project{
+    height: 350px;
+    margin-bottom: 80px;
+    width: 70%;
+}
+
+.project-actions{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+}
+
 @media (min-width: 50px){
     .search-filter{
         width: 80%;
@@ -873,6 +886,17 @@ input{
     }
 }
 
+@media (min-width: 450px){
+    .projectImageContainer{
+        height: 300px;
+    }
+
+    .projectImage{
+        height: 300px;
+        width: 100%;
+    }
+}
+
 @media (min-width: 650px){
     .project{
         width: 45%;
@@ -882,10 +906,6 @@ input{
 
 
 @media (min-width: 900px){
-
-    .project{
-        width: 28%;
-    }
 
     /*nav*/
 
@@ -983,6 +1003,10 @@ input{
         height: auto;
     }
 
+    .project-actions{
+        margin-right: 3%;
+    }
+
  .right form{
      width:400px;
      margin-top: 0%;
@@ -1066,6 +1090,11 @@ input{
     margin-bottom: 80px;
 }
 
+.detail-project{
+    height: 450px;
+    margin-bottom: 80px;
+}
+
 .profileProject{
     height: 410px;
 }
@@ -1074,11 +1103,6 @@ input{
     height: 300px;
     width: 100%;
     margin-bottom: 10px;
-}
-
-.projectImage{
-    height: 300px;
-    width: 100%;
 }
 
 .avatar{
@@ -1111,10 +1135,6 @@ input{
     text-decoration: none;
     width: 40px;
     height: 40px;
-}
-
-.detail-project{
-    display: flex;
 }
 
 }
