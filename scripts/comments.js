@@ -26,7 +26,7 @@ document.querySelector(".submitComment").addEventListener("click", function(even
         
         let deleteComment = document.createElement('a');
         deleteComment.classList.add("deleteComment");
-        deleteComment.innerHTML = "delete comment";
+        deleteComment.innerHTML = "delete";
         deleteComment.dataset.commentId = result.id;
         deleteComment.addEventListener("click", function(event){
             event.preventDefault();

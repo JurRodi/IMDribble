@@ -88,19 +88,23 @@
                         <?php foreach($allComments as $comment): ?>
                             <?php $commentUser = User::getUserById($comment['userid']) ?>
                             <li>
-                                <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $commentUser['id'] ?>"><?php echo $commentUser['username'] ?> commented:</a></h4>
-                                <p><?php echo $comment['text'] ?></p>
-                                <?php if($_SESSION['email'] === $commentUser['email'] || $_SESSION['email'] === $commentUser['email2']): ?>
+                                <div>
+                                    <h4 class="detailsText"><a id="postUsername" href="userProfile.php?u=<?php echo $commentUser['id'] ?>"><?php echo $commentUser['username'] ?> commented:</a></h4>
+                                    <p><?php echo $comment['text'] ?></p>
+                                </div>
+                                    <?php if($_SESSION['email'] === $commentUser['email'] || $_SESSION['email'] === $commentUser['email2']): ?>
                                 <a href="#" class="deleteComment" data-commentid="<?php echo $comment['id'] ?>">Delete</a>
                                 <?php endif ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
             </div>
+            <div class="whiteSpcae"></div>
               
         </div>
     
     </div>
+
     <!--modal section -->
     <div class="bg-popup">
        <div class="modal-content2">

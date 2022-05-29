@@ -421,6 +421,7 @@ input{
 .commentlist ul{
     text-decoration: none;
 }
+
 .commentform{
     display: flex;
     flex-direction: row;
@@ -881,6 +882,16 @@ input{
     align-items: center;
     margin-bottom: 20px;
     justify-content: flex-end;
+}
+
+.whiteSpcae{
+    height: 50px;
+    width: 1px;
+}
+
+.commentList li{
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (min-width: 50px){
