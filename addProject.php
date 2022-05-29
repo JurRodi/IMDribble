@@ -30,10 +30,12 @@
             <label for="description">Description</label>
             <input type="text" name="description" placeholder="Description" required></br>
             <label for="tags">Tags</label>
-            <?php foreach($tags as $tag): ?>
-                <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
-                <label for="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></label>
-            <?php endforeach; ?>
+            <div id="tags-section">
+                <?php foreach($tags as $tag): ?>
+                    <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>">
+                    <label for="<?php echo $tag['name']; ?>"><?php echo $tag['name']; ?></label>
+                <?php endforeach; ?>
+            </div>
             </br><input type="file" name="image" required></br>
             <input type="submit" name="submit" value="Upload">
         </form>
