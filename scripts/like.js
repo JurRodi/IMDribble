@@ -19,6 +19,7 @@ function like(e){
     .then(response => response.json())
     .then(data => {
         like.innerHTML = data['totallikes'] + " likes";
+        like.classList.toggle("liked");
         // console.log('Success:', data, "liked");
         
     })
