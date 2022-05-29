@@ -55,7 +55,7 @@
                 <span href="settings.php" class="material-symbols-outlined">settings</span>
             </a>
         </div>
-        <div class="showcase"><a id="showcase" href="">Share your showcase</a></div>
+        <div class="showcase"><a id="showcase" href="" data-id="<?php echo $user['id'] ?>">Share your showcase</a></div>
     </div>
     
     <div class="feed">

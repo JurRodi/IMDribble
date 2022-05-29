@@ -212,10 +212,10 @@
                 return $project_id;
         }
 
-        public static function getShowcaseItem($id){
+        public static function getShowcase($user_id){
                 $conn = Db::getConnection();
-                $statement = $conn->prepare("select * from projects where showcase = 1 and id = :id");
-                $statement->bindValue(":id", $id);
+                $statement = $conn->prepare("select * from projects where showcase = 1 and user_id = :user_id");
+                $statement->bindValue(":user_id", $user_id);
                 $statement->execute();
                 $projects = $statement->fetchAll();
                 return $projects;
@@ -233,13 +233,6 @@
                 $statement->bindValue(":id", $id);
                
                 return  $statement->execute();
-        }
-        public static function getShowcase(){
-                $conn = Db::getConnection();
-                $statement = $conn->prepare("select * from projects where showcase = 1");
-                $statement->execute();
-                $projects = $statement->fetchAll();
-                return $projects;
         }
       
         public static function getAmount($limit, $offset) {

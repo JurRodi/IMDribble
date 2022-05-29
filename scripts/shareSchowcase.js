@@ -1,7 +1,7 @@
 document.getElementById('showcase').addEventListener('click', function(e) {
     e.preventDefault();
     let showcase = document.getElementById('showcase');
-    showcase.href = 'showcase.php';
+    showcase.href = 'showcase.php?u=' + e.target.dataset.id;
     navigator.clipboard.writeText(showcase.href);
     let copied = document.createElement('p');
     copied.style.color = 'red';

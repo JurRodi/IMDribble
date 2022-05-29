@@ -1,8 +1,7 @@
 <?php 
 
     include_once(__DIR__. "/bootstrap.php");
-    $projects = Project::getSHowcase();
-    // $projects = Project::getAll();
+    $projects = Project::getShowcase($_GET['u']);
 
 ?><!DOCTYPE html>
 <html lang="en">
