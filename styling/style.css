@@ -314,7 +314,9 @@ input{
     border: solid 1px #1D1AFF;
     
 }
-
+#report{
+    margin-top:10% ;
+}
 
 .reportitem{
     margin-left: 72%;
